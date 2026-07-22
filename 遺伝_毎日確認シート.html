@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>遺伝</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="style.css" />
+  <script>(function(){try{var k='pboard:theme',t=localStorage.getItem(k);if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme:dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();document.addEventListener('DOMContentLoaded',function(){var k='pboard:theme',b=document.createElement('button');b.id='theme-toggle';b.type='button';function c(){return document.documentElement.getAttribute('data-theme')||'light';}function p(){b.textContent=c()==='dark'?'☀️':'🌙';}b.addEventListener('click',function(){var n=c()==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);try{localStorage.setItem(k,n);}catch(e){}p();});p();document.body.appendChild(b);});</script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+<nav class="topnav"><a href="index.html">← 目次</a></nav>
+<header id="title-block-header">
+<h1 class="title">遺伝</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#遺伝症候群-毎日確認シート"
+id="toc-遺伝症候群-毎日確認シート">遺伝・症候群 毎日確認シート</a>
+<ul>
+<li><a href="#fire-毎朝ここだけ音読3つの地雷"
+id="toc-fire-毎朝ここだけ音読3つの地雷">🔥
+毎朝ここだけ音読（3つの地雷）</a></li>
+<li><a href="#1-遺伝形式と再発率計算の型最優先毎年"
+id="toc-1-遺伝形式と再発率計算の型最優先毎年">1.
+遺伝形式と再発率（計算の型）★最優先・毎年</a></li>
+<li><a href="#2-疾患--遺伝形式-対応表組み合わせ問題で直撃"
+id="toc-2-疾患--遺伝形式-対応表組み合わせ問題で直撃">2. 疾患 ↔︎ 遺伝形式
+対応表（組み合わせ問題で直撃）</a></li>
+<li><a href="#3-インプリンティング由来で病気が変わる"
+id="toc-3-インプリンティング由来で病気が変わる">3.
+インプリンティング（由来で病気が変わる）</a></li>
+<li><a href="#4-トリプレットリピート病表現促進anticipation"
+id="toc-4-トリプレットリピート病表現促進anticipation">4.
+トリプレットリピート病＋表現促進（anticipation）</a></li>
+<li><a href="#5-染色体異常微細欠失性染色体症候群の一撃像"
+id="toc-5-染色体異常微細欠失性染色体症候群の一撃像">5.
+染色体異常・微細欠失・性染色体（症候群の一撃像）</a></li>
+<li><a href="#55-症候群-弁別一撃像-早見表弱点直結毎朝ここ"
+id="toc-55-症候群-弁別一撃像-早見表弱点直結毎朝ここ">5.5 症候群
+弁別・一撃像 早見表【★弱点直結・毎朝ここ】</a></li>
+<li><a href="#6-signature-gene答えになる少数だけ覚える"
+id="toc-6-signature-gene答えになる少数だけ覚える">6. signature
+gene（答えになる少数だけ覚える）</a></li>
+<li><a href="#7-出生前検査遺伝カウンセリング"
+id="toc-7-出生前検査遺伝カウンセリング">7.
+出生前検査・遺伝カウンセリング</a></li>
+<li><a href="#75-遺伝学的検査の使い分け初学者向け機序つき"
+id="toc-75-遺伝学的検査の使い分け初学者向け機序つき">7.5
+遺伝学的検査の使い分け（初学者向け・機序つき）</a></li>
+<li><a href="#8-新生児マススクリーニングnbsライソゾーム病ert横断で頻出"
+id="toc-8-新生児マススクリーニングnbsライソゾーム病ert横断で頻出">8.
+新生児マススクリーニング（NBS）＋ライソゾーム病・ERT（横断で頻出）</a></li>
+<li><a href="#9-先天奇形症候群--心奇形腫瘍の対応毎年の金脈"
+id="toc-9-先天奇形症候群--心奇形腫瘍の対応毎年の金脈">9. 先天奇形症候群
+→ 心奇形・腫瘍の対応（毎年の金脈）</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="遺伝症候群-毎日確認シート">遺伝・症候群 毎日確認シート</h1>
+<blockquote>
+<p>毎年4〜6問。難17%は捨て、<strong>「遺伝形式の判定＋確率計算」「疾患↔︎形式の対応」「症候群の一撃像」の3本で易＋標準を全部取る</strong>のが7割戦略。</p>
+</blockquote>
+<hr />
+<h2 id="fire-毎朝ここだけ音読3つの地雷">🔥
+毎朝ここだけ音読（3つの地雷）</h2>
+<ol type="1">
+<li><strong>確率は反射で言わずPunnett4マス</strong>。数字が変わるのは<strong>分母</strong>：<code>男児が罹患</code>（分母＝男児）と
+<code>子が罹患</code>（分母＝全子）は別。100%は稀（AA×◯ or
+親が患者のときだけ）。</li>
+<li><strong>「優性＝全員」は誤り</strong>。AD患者はほぼヘテロ(Aa)×健常(aa)→子<strong>50%</strong>。</li>
+<li><strong>XLRは決め打ち7つだけ</strong>（語呂「血がファジーでうれし」）。<strong>それ以外をXLRにしない</strong>。ヘモグロビン異常(鎌状・サラセミア)は<strong>AR</strong>、Huntington・軟骨無形成・球状赤血球症は<strong>AD</strong>。</li>
+</ol>
+<hr />
+<h2 id="1-遺伝形式と再発率計算の型最優先毎年">1.
+遺伝形式と再発率（計算の型）★最優先・毎年</h2>
+<table>
+<thead>
+<tr>
+<th>形式</th>
+<th>典型の掛け合わせ</th>
+<th>子の罹患率</th>
+<th>覚える一手</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AD</strong></td>
+<td>患者(Aa) × 健常(aa)</td>
+<td><strong>50%</strong></td>
+<td>患者はほぼヘテロ。新生変異も多い（親正常でも出る）</td>
+</tr>
+<tr>
+<td><strong>AR</strong></td>
+<td>保因者(Aa) × 保因者(Aa)</td>
+<td><strong>罹患25%・保因50%・正常25%</strong></td>
+<td>先天代謝異常の大半（NBS対象）。血族婚で↑</td>
+</tr>
+<tr>
+<td><strong>XLR</strong></td>
+<td>保因者母(XᴬXᵃ) × 健常父</td>
+<td><strong>息子50%罹患・娘50%保因</strong></td>
+<td>患者父×健常母 →
+<strong>娘全員保因・息子全員健常</strong>（父のXは娘のみへ）</td>
+</tr>
+<tr>
+<td><strong>XLD</strong></td>
+<td>患者 × 健常</td>
+<td>娘に多い</td>
+<td><strong>男児致死</strong>あり（Rett・低リン血症性くる病・色素失調症）→生まれるのはほぼ女児</td>
+</tr>
+</tbody>
+</table>
+<p><strong>計算の鉄則</strong></p>
+<ul>
+<li><strong>分母を先に確定</strong>してから掛ける。例：XLR保因者母×健常父
+<ul>
+<li><code>生まれた男児が罹患</code> ＝
+<strong>50%</strong>（分母＝男児。母からXᵃをもらう1/2）</li>
+<li><code>次の子が罹患</code>（性別問う前）＝
+<strong>25%</strong>（分母＝全子＝1/2×1/2。男である確率をさらに掛ける）</li>
+</ul></li>
+<li><strong>100%になる条件</strong>：AR患者×AR患者で全員…にはならない（25%）。100%は
+<code>AA×aa→全員Aa（保因）</code>のような特定条件や、<strong>親が患者</strong>のとき。安易に100%を選ばない（★5の急所）。</li>
+<li><strong>Punnett例（AR保因者×保因者）</strong>：A/a × A/a → AA:Aa:aa
+= 1:2:1 → 罹患(aa)25%・保因(Aa)50%。</li>
+</ul>
+<hr />
+<h2 id="2-疾患--遺伝形式-対応表組み合わせ問題で直撃">2. 疾患 ↔︎ 遺伝形式
+対応表（組み合わせ問題で直撃）</h2>
+<h3 id="ad優性ヘテロで発症">AD（優性・ヘテロで発症）</h3>
+<p>Marfan(FBN1)／<strong>神経線維腫症1・2／結節性硬化症</strong>（neurocutaneousはAD）／<strong>軟骨無形成症</strong>(FGFR3・多くde
+novo=高齢父)／<strong>Huntington</strong>(CAG・成人発症)／家族性高コレステロール血症／<strong>遺伝性球状赤血球症</strong>／骨形成不全症(多く)／筋強直性ジストロフィー(CTG)</p>
+<h3 id="ar劣性保因者保因者">AR（劣性・保因者×保因者）</h3>
+<p><strong>先天代謝異常の大半</strong>：PKU・メチルマロン酸/プロピオン酸血症・<strong>ホモシスチン尿症</strong>・ガラクトース血症・MSUD／嚢胞性線維症／<strong>Wilson病</strong>／SMA／<strong>鎌状赤血球症・サラセミア</strong>（血液でもAR）／Tay-Sachs／<strong>福山型筋ジス</strong>(フクチン)／Friedreich失調(GAA)</p>
+<ul>
+<li>⚠️<strong>尿素サイクル異常の多くはARだが、OTC欠損症だけX連鎖</strong>（高NH3＋アシドーシスなしの男児）＝罠。</li>
+</ul>
+<h3
+id="xlr決め打ちリストこれ以外にしない">XLR（決め打ちリスト＝これ以外にしない）</h3>
+<p>🔑 語呂 <strong>「血（ち）がファジーでうれし」</strong> ＝
+<strong>血</strong>友病A/B ／ <strong>ファ</strong>ブリー ／
+<strong>ジー</strong>＝G6PD欠損 ／
+<strong>で</strong>＝デュシェンヌ(DMD/BMD) ／
+<strong>う</strong>＝Wiskott-Aldrich ／ <strong>れ</strong>＝Lesch-Nyhan
+／ <strong>し</strong>＝CGD(約7割がX連鎖)</p>
+<ul>
+<li>拡張（この語呂の外だが頻出）：<strong>Hunter症候群(MPS
+II)</strong>／<strong>Menkes病</strong>／XLA(Bruton)／色覚異常／X連鎖SCID(最多型)</li>
+<li>⚠️ <strong>Hurler(MPS I)はAR／Hunter(MPS
+II)はXLR</strong>（HunterのほうがHで男児＝Xでつなぐ）</li>
+</ul>
+<h3 id="xld特殊">XLD・特殊</h3>
+<p>Rett(MECP2・<strong>男児致死</strong>)／低リン血症性くる病(PHEX)／色素失調症／<strong>脆弱X症候群</strong>(FMR1・CGG・最多の遺伝性知的障害・大精巣/長顔/大耳)</p>
+<h3
+id="インプリンティングメンデル形式の外-3">インプリンティング（メンデル形式の"外"）→
+§3</h3>
+<h3 id="トリソミー欠失性染色体--5">トリソミー・欠失・性染色体 → §5</h3>
+<p><strong>罠まとめ</strong>：血の病気でもXLRは<strong>凝固=血友病だけ</strong>（Hb異常はAR）。neurocutaneousは<strong>全部AD</strong>。Huntington・軟骨無形成・球状赤血球=<strong>AD</strong>。</p>
+<hr />
+<h2 id="3-インプリンティング由来で病気が変わる">3.
+インプリンティング（由来で病気が変わる）</h2>
+<p><strong>「配列は正常でも、父由来か母由来かで発現が変わる」</strong>＝AD/AR/XLRで答えられない（土俵が違う）。</p>
+<table>
+<thead>
+<tr>
+<th>失われる側</th>
+<th>疾患</th>
+<th>一撃像</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>父由来15q欠失</strong></td>
+<td><strong>Prader-Willi</strong></td>
+<td>新生児期の低緊張・哺乳不良→幼児期以降の<strong>過食・肥満</strong>・性腺機能低下・軽度知的</td>
+</tr>
+<tr>
+<td><strong>母由来15q欠失(UBE3A脱落)</strong></td>
+<td><strong>Angelman</strong></td>
+<td>重度知的・<strong>笑い発作</strong>・失調性歩行・てんかん・発語ほぼなし</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>覚え方：<strong>Prader-Willi＝Paternal（どちらもP）</strong>。父の寄与が消えるとPW／母の寄与(UBE3A)が消えるとAngelman。</li>
+<li>機序3型：<strong>欠失(最多70%)／片親性ダイソミー(UPD)／IC異常</strong>（＋AngelmanのみUBE3A点変異）。
+<ul>
+<li>UPD：15qが<strong>2本とも母由来＝父の寄与ゼロ＝PW</strong>／<strong>2本とも父由来＝Angelman</strong>。</li>
+</ul></li>
+<li>診断の一手＝<strong>メチル化解析(MS-MLPA)</strong>（欠失・UPD・IC異常をまとめて拾う）。</li>
+<li>同系統：<strong>Beckwith-Wiedemann</strong>(11p15)＝巨舌・臍帯ヘルニア・片側肥大・<strong>Wilms/肝芽腫リスク</strong>（腫瘍サーベイランス）。</li>
+</ul>
+<hr />
+<h2 id="4-トリプレットリピート病表現促進anticipation">4.
+トリプレットリピート病＋表現促進（anticipation）</h2>
+<p>世代を経るごとにリピートが伸び<strong>発症が早く・重く</strong>なる＝表現促進。</p>
+<ul>
+<li><strong>脆弱X</strong>(CGG・FMR1・XLD様)／<strong>Huntington</strong>(CAG・AD・父方伝達で若年化)／<strong>筋強直性ジストロフィー</strong>(CTG・AD・先天型は母方伝達)／<strong>Friedreich失調</strong>(GAA・AR)</li>
+<li>「若年発症の家系で世代ごとに早発・重症化」を見たら<strong>リピート病</strong>を想起。</li>
+</ul>
+<hr />
+<h2 id="5-染色体異常微細欠失性染色体症候群の一撃像">5.
+染色体異常・微細欠失・性染色体（症候群の一撃像）</h2>
+<h3 id="トリソミー">トリソミー</h3>
+<ul>
+<li><strong>Down(21)</strong>：筋緊張低下・つり上がり眼裂・単一手掌線・AVSD・十二指腸閉鎖(double
+bubble)・環軸椎不安定・<strong>転座型は再発率に直結→両親核型</strong></li>
+<li><strong>Edwards(18)</strong>：手指屈曲重合・揺り椅子状足底・小顎・予後不良</li>
+<li><strong>Patau(13)</strong>：全前脳胞症・口唇口蓋裂・多指・予後不良</li>
+</ul>
+<h3 id="微細欠失fishマイクロアレイ">微細欠失（FISH/マイクロアレイ）</h3>
+<ul>
+<li><strong>DiGeorge
+22q11.2</strong>：<strong>CATCH22</strong>＝Cardiac(円錐動脈幹：TOF/総動脈幹/大動脈弓離断B)・Abnormal
+facies・Thymic低形成(T細胞↓)・Cleft口蓋・Hypocalcemia(副甲状腺低形成)。<strong>低Ca＋胸腺低形成＋円錐動脈幹</strong></li>
+<li><strong>Williams
+7q11(ELN)</strong>：妖精様顔貌・<strong>大動脈弁上狭窄</strong>・<strong>高Ca血症</strong>・社交的性格・軽度知的</li>
+<li><strong>5p欠失</strong>：猫鳴き症候群(cri-du-chat)・高調な啼泣・小頭</li>
+<li><strong>15q</strong>：PW/Angelman（§3）</li>
+</ul>
+<h3 id="性染色体">性染色体</h3>
+<ul>
+<li><strong>Turner(45,X)</strong>：低身長・翼状頸・外反肘・<strong>大動脈縮窄/二尖弁</strong>・性腺形成不全(原発性無月経)・リンパ浮腫。<strong>知能は正常</strong></li>
+<li><strong>Klinefelter(47,XXY)</strong>：高身長・小精巣・女性化乳房・非閉塞性無精子症・思春期以降のテストステロン低下</li>
+</ul>
+<hr />
+<h2 id="55-症候群-弁別一撃像-早見表弱点直結毎朝ここ">5.5 症候群
+弁別・一撃像 早見表【★弱点直結・毎朝ここ】</h2>
+<blockquote>
+<p>2026-07-20の演習で<strong>症候群↔︎一撃像の弁別を4連続で外した</strong>（Williams/Noonan・Turner/Klinefelter・NF1/Wilms・脆弱X/Klinefelter）。遺伝形式・確率は取れているので、<strong>残る穴はこの表の暗記だけ</strong>。</p>
+</blockquote>
+<h3 id="a-微細欠失染色体の場所--ca--心">A. 微細欠失（染色体の場所 × Ca ×
+心）</h3>
+<table>
+<thead>
+<tr>
+<th>症候群</th>
+<th>座位</th>
+<th>一撃像</th>
+<th>Ca</th>
+<th>心</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Williams</strong></td>
+<td>7q11.23(ELN)</td>
+<td>妖精様顔貌・<strong>社交的</strong>・軽度知的</td>
+<td><strong>高Ca</strong></td>
+<td><strong>大動脈弁"上"狭窄(SVAS)</strong></td>
+</tr>
+<tr>
+<td><strong>DiGeorge</strong></td>
+<td>22q11.2</td>
+<td>胸腺低形成(T↓)・口蓋裂</td>
+<td><strong>低Ca</strong></td>
+<td>円錐動脈幹(TOF/総動脈幹/弓離断B)</td>
+</tr>
+<tr>
+<td>猫鳴き</td>
+<td>5p欠失</td>
+<td>高調な啼泣・小頭・小顎</td>
+<td>─</td>
+<td>─</td>
+</tr>
+<tr>
+<td>Prader-Willi</td>
+<td>15q<strong>父</strong>由来</td>
+<td>新生児低緊張→過食肥満・性腺低下</td>
+<td>─</td>
+<td>─</td>
+</tr>
+<tr>
+<td>Angelman</td>
+<td>15q<strong>母</strong>由来(UBE3A)</td>
+<td>笑い発作・失調・てんかん</td>
+<td>─</td>
+<td>─</td>
+</tr>
+<tr>
+<td>Wolf-Hirschhorn</td>
+<td>4p欠失</td>
+<td>ギリシャ兜様顔貌・てんかん</td>
+<td>─</td>
+<td>─</td>
+</tr>
+</tbody>
+</table>
+<p>→
+<strong>7q＝高Ca＝弁上／22q＝低Ca＝円錐動脈幹</strong>（座位は近いのにCaは逆）</p>
+<h3 id="b-性染色体単一遺伝子性別--身長--精巣">B.
+性染色体・単一遺伝子（性別 × 身長 × 精巣）</h3>
+<table>
+<thead>
+<tr>
+<th>症候群</th>
+<th>核型/遺伝子</th>
+<th>性</th>
+<th>身長</th>
+<th>精巣/性腺</th>
+<th>心・特徴</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Turner</strong></td>
+<td>45,X</td>
+<td>女</td>
+<td><strong>低</strong></td>
+<td>原発性無月経</td>
+<td><strong>大動脈縮窄/二尖弁</strong>・翼状頸・リンパ浮腫</td>
+</tr>
+<tr>
+<td><strong>Klinefelter</strong></td>
+<td>47,XXY</td>
+<td>男</td>
+<td>高</td>
+<td><strong>小精巣</strong>・女性化乳房・不妊</td>
+<td>テストステロン低下</td>
+</tr>
+<tr>
+<td><strong>脆弱X</strong></td>
+<td>FMR1・CGG</td>
+<td>男(重)</td>
+<td>─</td>
+<td><strong>大精巣</strong>(思春期後)</td>
+<td>長顔・大耳・最多の遺伝性知的障害・自閉</td>
+</tr>
+<tr>
+<td><strong>Noonan</strong></td>
+<td>PTPN11(<strong>核型正常</strong>)</td>
+<td>両</td>
+<td>低</td>
+<td>停留精巣</td>
+<td><strong>肺動脈弁狭窄</strong>・肥大型心筋症・翼状頸</td>
+</tr>
+</tbody>
+</table>
+<p>→
+<strong>大精巣＝脆弱X／小精巣＝Klinefelter</strong>。<strong>翼状頸で紛れるTurner(45X・大動脈縮窄)とNoonan(核型正常・肺動脈弁狭窄)は"心疾患＋核型"で割る</strong></p>
+<h3 id="c-神経皮膚症候群皮膚--腫瘍">C. 神経皮膚症候群（皮膚 ×
+腫瘍）</h3>
+<table>
+<thead>
+<tr>
+<th>症候群</th>
+<th>遺伝</th>
+<th>皮膚</th>
+<th>腫瘍/病変</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>NF1</strong></td>
+<td>AD</td>
+<td><strong>カフェオレ斑・腋窩雀斑</strong></td>
+<td><strong>視神経膠腫</strong>・神経線維腫・Lisch結節・MPNST・褐色細胞腫</td>
+</tr>
+<tr>
+<td>NF2</td>
+<td>AD</td>
+<td>乏しい</td>
+<td><strong>両側前庭神経鞘腫(聴神経腫)</strong>・髄膜腫</td>
+</tr>
+<tr>
+<td><strong>結節性硬化症</strong></td>
+<td>AD(TSC1/2)</td>
+<td><strong>葉状白斑・顔面血管線維腫</strong></td>
+<td><strong>心横紋筋腫(乳児)・腎AML・SEGA</strong>・West</td>
+</tr>
+<tr>
+<td>Sturge-Weber</td>
+<td>体細胞GNAQ</td>
+<td><strong>顔面ポートワイン母斑(V1)</strong></td>
+<td>軟膜血管腫・<strong>緑内障</strong>・線路状石灰化</td>
+</tr>
+<tr>
+<td>VHL</td>
+<td>AD</td>
+<td>─</td>
+<td><strong>網膜/小脳血管芽腫・褐色細胞腫・腎細胞癌</strong></td>
+</tr>
+</tbody>
+</table>
+<p>→
+<strong>白斑＝TSC／カフェオレ＝NF1／ポートワイン＝Sturge-Weber</strong></p>
+<h3 id="d-症候群--腫瘍-の紐付け">D. 症候群 → 腫瘍 の紐付け</h3>
+<table>
+<thead>
+<tr>
+<th>腫瘍</th>
+<th>関連症候群</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Wilms腫瘍</strong></td>
+<td>WAGR(WT1)・Beckwith-Wiedemann・Denys-Drash</td>
+</tr>
+<tr>
+<td><strong>視神経膠腫</strong></td>
+<td>NF1 ／ <strong>聴神経腫</strong>＝NF2</td>
+</tr>
+<tr>
+<td><strong>心横紋筋腫・腎AML・SEGA</strong></td>
+<td>結節性硬化症</td>
+</tr>
+<tr>
+<td><strong>褐色細胞腫</strong></td>
+<td>VHL・NF1・MEN2</td>
+</tr>
+<tr>
+<td><strong>肝芽腫・Wilms</strong></td>
+<td>Beckwith-Wiedemann ／ <strong>白血病(TAM)</strong>＝Down</td>
+</tr>
+</tbody>
+</table>
+<h3 id="e-どっちの即答顔貌体型で紛れるペア">E.
+"どっち?"の即答（顔貌/体型で紛れるペア）</h3>
+<ul>
+<li>妖精様＋社交的＋高Ca＋弁上狭窄 → <strong>Williams</strong></li>
+<li>翼状頸＋低身長＋<strong>女</strong>＋無月経＋大動脈縮窄 →
+<strong>Turner</strong></li>
+<li>翼状頸＋低身長＋<strong>肺動脈弁狭窄＋核型正常</strong> →
+<strong>Noonan</strong></li>
+<li>長顔＋大耳＋<strong>大精巣</strong>＋家系に知的障害の男 →
+<strong>脆弱X</strong></li>
+<li>巨舌＋臍帯ヘルニア＋片側肥大＋低血糖 →
+<strong>Beckwith-Wiedemann</strong></li>
+<li>粗な顔貌＋肝脾腫＋関節拘縮＋角膜混濁 →
+<strong>ムコ多糖症(Hurler)</strong></li>
+</ul>
+<hr />
+<h2 id="6-signature-gene答えになる少数だけ覚える">6. signature
+gene（答えになる少数だけ覚える）</h2>
+<p><strong>遺伝子名そのものが答えになる出題はごく少数</strong>。臨床像→診断名で取れれば十分。名前が問われる例外だけ：</p>
+<table>
+<thead>
+<tr>
+<th>遺伝子</th>
+<th>疾患</th>
+<th>ヒント</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>WT1</strong></td>
+<td>WAGR症候群</td>
+<td><strong>W</strong>ilms＋<strong>A</strong>niridia(無虹彩)＋<strong>G</strong>U奇形＋<strong>R</strong>etardation</td>
+</tr>
+<tr>
+<td><strong>COL4A5</strong>(IV型コラーゲン)</td>
+<td><strong>Alport症候群</strong></td>
+<td>XLD・男性重症・<strong>血尿＋感音難聴＋前円錐水晶体</strong></td>
+</tr>
+<tr>
+<td><strong>FBN1</strong></td>
+<td>Marfan</td>
+<td>水晶体<strong>上方</strong>偏位・大動脈解離</td>
+</tr>
+<tr>
+<td><strong>ジストロフィン</strong></td>
+<td>DMD/BMD</td>
+<td>Gowers徴候・仮性肥大・CK著増</td>
+</tr>
+<tr>
+<td><strong>FMR1</strong></td>
+<td>脆弱X</td>
+<td>最多の遺伝性知的障害</td>
+</tr>
+</tbody>
+</table>
+<p>⚠️
+<strong>ディストラクタ罠</strong>：CGDの選択肢に**「BTK遺伝子」<strong>が出るが、BTKは</strong>Bruton型無γグロブリン血症(XLA)<strong>。CGDは</strong>NADPHオキシダーゼ(gp91phox)**。BTK＝Brutonの紐付けだけ持てば引っかからない。</p>
+<hr />
+<h2 id="7-出生前検査遺伝カウンセリング">7.
+出生前検査・遺伝カウンセリング</h2>
+<ul>
+<li><strong>NIPT</strong>＝母体血中cell-free
+DNA。<strong>スクリーニングであって確定でない</strong>（陽性なら確定検査へ）。主に13/18/21トリソミー。</li>
+<li><strong>確定検査</strong>＝<strong>絨毛採取(CVS,11-14週)／羊水検査(15週〜)</strong>。</li>
+<li><strong>均衡型相互転座</strong>を子に見たら →
+<strong>両親の染色体検査</strong>（保因者なら再発率が上がる）。</li>
+<li>遺伝カウンセリングは<strong>非指示的</strong>（本人の自己決定を支援）。</li>
+</ul>
+<hr />
+<h2 id="75-遺伝学的検査の使い分け初学者向け機序つき">7.5
+遺伝学的検査の使い分け（初学者向け・機序つき）</h2>
+<blockquote>
+<p><strong>どの検査も「相補的な塩基が対になる(ハイブリダイズ)」が土台</strong>。選び方は<strong>解像度</strong>で決める＝「<strong>染色体まるごと
+→ 部分(微小欠失) →
+1塩基</strong>」。疑う異常の"大きさ"に検査を合わせる。</p>
+</blockquote>
+<h3
+id="どの検査で何が見える機序つき">どの検査で何が見える（機序つき）</h3>
+<table>
+<thead>
+<tr>
+<th>検査</th>
+<th>機序（どう見ている）</th>
+<th>得意（検出できる）</th>
+<th>苦手（見えない）</th>
+<th>代表適応</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>核型（G分染）</strong></td>
+<td>分裂中期の染色体を染めて<strong>形と本数</strong>を見る</td>
+<td><strong>数的異常・大きな転座/欠失/逆位・モザイク</strong></td>
+<td>微小欠失(&lt;5Mb)・点変異</td>
+<td>Down・<strong>転座型の両親核型</strong></td>
+</tr>
+<tr>
+<td><strong>FISH</strong></td>
+<td>狙う配列に<strong>蛍光プローブ</strong>を対合→<strong>光る点を数える</strong></td>
+<td><strong>既知の微小欠失をピンポイント</strong>（22q11・Williams・15q）</td>
+<td>当てた場所以外・全ゲノム網羅</td>
+<td><strong>22q11/DiGeorge</strong>・Williams</td>
+</tr>
+<tr>
+<td><strong>マイクロアレイ(CMA)</strong></td>
+<td>患者と対照DNAを<strong>赤緑で標識→蛍光"比"でコピー数</strong>を測る</td>
+<td><strong>全ゲノムの微小欠失/重複を網羅</strong>・(SNP型)<strong>UPD</strong></td>
+<td><strong>均衡型転座（量が不変）</strong>・点変異</td>
+<td><strong>原因不明の発達遅滞/多発奇形＝第一選択</strong></td>
+</tr>
+<tr>
+<td><strong>メチル化解析(MS-MLPA)</strong></td>
+<td>DNAの<strong>メチル化(付箋)の有無</strong>を判別</td>
+<td><strong>インプリンティング</strong>（欠失・UPD・IC異常を一括）</td>
+<td>配列の点変異</td>
+<td><strong>PW/Angelman・Beckwith</strong></td>
+</tr>
+<tr>
+<td><strong>MLPA</strong></td>
+<td>隣接プローブを<strong>連結→増幅→産物量</strong>でエクソン数を測る</td>
+<td><strong>エクソン欠失/重複</strong></td>
+<td>点変異</td>
+<td><strong>DMD</strong></td>
+</tr>
+<tr>
+<td><strong>シークエンス(Sanger/NGS)</strong></td>
+<td>DNAを<strong>1塩基ずつ読む</strong>（NGSは多遺伝子一括）</td>
+<td><strong>点変異</strong></td>
+<td>大きな構造異常・リピート</td>
+<td>単一遺伝子・網羅解析</td>
+</tr>
+<tr>
+<td><strong>リピート検査</strong></td>
+<td>PCR/サザンで<strong>反復数</strong>を測る</td>
+<td><strong>トリプレットリピート</strong></td>
+<td>―</td>
+<td><strong>脆弱X・筋強直性ジス・Huntington</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="決定木何を疑ったら--どれ">決定木（何を疑ったら → どれ）</h3>
+<ul>
+<li>数的異常・大きな転座 → <strong>核型</strong></li>
+<li>既知の微小欠失をピンポイント確認 → <strong>FISH</strong></li>
+<li>原因不明の発達遅滞・自閉・多発奇形（網羅的に） →
+<strong>マイクロアレイ(CMA)＝第一選択</strong></li>
+<li>インプリンティング（PW/Angelman/BWS） →
+<strong>メチル化解析</strong></li>
+<li>点変異 → <strong>シークエンス</strong>／エクソン欠失(DMD) →
+<strong>MLPA</strong>／リピート病 → <strong>リピート検査</strong></li>
+</ul>
+<h3 id="落とし穴試験直結">★落とし穴（試験直結）</h3>
+<ul>
+<li><strong>均衡型転座はCMAで見えない</strong>（コピー数が変わらないから）→
+<strong>核型でしか捕まらない</strong>（＝両親検査は核型）。</li>
+<li><strong>PW/Angelmanはメチル化解析が最強</strong>（FISHは欠失しか拾えずUPD/IC異常を逃す）。</li>
+<li><strong>DMD＝MLPA（大半がエクソン欠失）／脆弱X＝リピート検査（シークエンスでは数えにくい）</strong>。</li>
+</ul>
+<h3 id="出生前新生児別レーン">出生前・新生児（別レーン）</h3>
+<ul>
+<li><strong>NIPT</strong>＝母体血cfDNA・13/18/21・<strong>非確定スクリーニング</strong>
+→ 陽性は<strong>絨毛(CVS)/羊水→核型 or CMA</strong>で確定（§7）。</li>
+<li><strong>新生児マススクリーニング</strong> → §8。</li>
+</ul>
+<hr />
+<h2 id="8-新生児マススクリーニングnbsライソゾーム病ert横断で頻出">8.
+新生児マススクリーニング（NBS）＋ライソゾーム病・ERT（横断で頻出）</h2>
+<h3 id="81-新生児マススクリーニング">8.1 新生児マススクリーニング</h3>
+<ul>
+<li><strong>従来（公費・ほぼ全員）</strong>：タンデムマスで<strong>先天代謝異常（アミノ酸/有機酸/脂肪酸代謝異常）</strong>＋<strong>内分泌（先天性甲状腺機能低下＝クレチン症・先天性副腎過形成CAH）</strong>。</li>
+<li><strong>拡大NBS（2023年4月〜・一部自治体・任意/自費）</strong>＝<strong>SMA・SCID（原発性免疫不全）・B細胞欠損症・ライソゾーム病（Fabry・ムコ多糖症I/II型・Pompe）</strong>。→
+<strong>SMA・SCID・MPSが同じクラスター</strong>で問われる（別々に覚えない）。</li>
+</ul>
+<h3 id="82-ライソゾーム病ムコ多糖症mps">8.2
+ライソゾーム病・ムコ多糖症（MPS）</h3>
+<ul>
+<li><strong>診断＝尿中ムコ多糖(GAG)分析 → 酵素活性 →
+遺伝子</strong>。</li>
+<li><strong>治療＝酵素補充療法(ERT)</strong>。<strong>ERT適応＝ゴーシェ・Fabry・MPS
+I/II/IV/VI・Pompe・酸性リパーゼ欠損</strong>。<strong>中枢神経症状にはERTが届かない
+→ Hurlerは早期造血幹細胞移植(HSCT)</strong>。</li>
+<li><strong>遺伝＝Hunter(MPS
+II)だけXLR（男児）、他はAR</strong>。<strong>角膜混濁＝Hurler(+)/Hunter(−)</strong>。</li>
+<li>一撃像＝<strong>粗な顔貌・肝脾腫・関節拘縮・進行性・（Hurler/Hunter）発達退行</strong>。<strong>Morquio(IV)＝短躯低身長・知能正常・環軸椎不安定</strong>。</li>
+</ul>
+<hr />
+<h2 id="9-先天奇形症候群--心奇形腫瘍の対応毎年の金脈">9. 先天奇形症候群
+→ 心奇形・腫瘍の対応（毎年の金脈）</h2>
+<blockquote>
+<p>覚え方＝「症候群 → 顔貌/身体 → <strong>心奇形（1対1）</strong> →
+<strong>腫瘍</strong> → 遺伝子」。心奇形の対応は毎年出る確定得点。</p>
+</blockquote>
+<h3 id="91-症候群--特徴的な心奇形1対1で暗記">9.1 症候群 →
+特徴的な心奇形（1対1で暗記）</h3>
+<table>
+<thead>
+<tr>
+<th>症候群</th>
+<th>決め手の心奇形</th>
+<th>遺伝子/ヒント</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Down</strong></td>
+<td><strong>房室中隔欠損(AVSD)</strong>（＋VSD/PDA/TOF）</td>
+<td>21トリソミー</td>
+</tr>
+<tr>
+<td><strong>Turner</strong></td>
+<td><strong>大動脈縮窄・二尖弁</strong>（左心系閉塞・大動脈解離）</td>
+<td>45,X</td>
+</tr>
+<tr>
+<td><strong>22q11/DiGeorge</strong></td>
+<td><strong>円錐動脈幹異常（TOF・総動脈幹・大動脈弓離断B・肺動脈閉鎖）</strong></td>
+<td>TBX1・CATCH22</td>
+</tr>
+<tr>
+<td><strong>Noonan</strong></td>
+<td><strong>弁性肺動脈狭窄＋肥大型心筋症(HCM)</strong></td>
+<td>PTPN11（RAS/MAPK）</td>
+</tr>
+<tr>
+<td><strong>Williams</strong></td>
+<td><strong>大動脈弁上狭窄(SVAS)＋末梢肺動脈狭窄</strong></td>
+<td>ELN欠失・高Ca</td>
+</tr>
+<tr>
+<td><strong>Holt-Oram</strong></td>
+<td><strong>ASD/VSD＋橈側上肢異常（母指低形成・三節母指）</strong></td>
+<td>TBX5</td>
+</tr>
+<tr>
+<td><strong>Osler(HHT)</strong></td>
+<td><strong>肺動静脈瘻→右左シャント・脳膿瘍</strong>・鼻出血</td>
+<td>AD</td>
+</tr>
+<tr>
+<td><strong>Marfan</strong></td>
+<td>大動脈基部拡張・解離・僧帽弁逸脱</td>
+<td>FBN1</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>ひっかけ：<strong>Noonan＝"弁性"肺動脈狭窄／Williams＝"末梢"肺動脈狭窄＋SVAS</strong>（どちらも肺動脈狭窄だが位置が違う）。</li>
+</ul>
+<h3 id="92-症候群--合併腫瘍サーベイランス">9.2 症候群 →
+合併腫瘍（サーベイランス）</h3>
+<ul>
+<li><strong>RASopathy（RAS/MAPK経路の暴走→腫瘍好発）</strong>：
+<ul>
+<li><strong>Costello(HRAS)</strong>＝<strong>横紋筋肉腫・神経芽腫・膀胱癌</strong>（RAS直下で腫瘍リスク最強）＋HCM/不整脈。</li>
+<li><strong>Noonan(PTPN11)</strong>＝<strong>若年性骨髄単球性白血病(JMML)</strong>・骨髄増殖。</li>
+</ul></li>
+<li><strong>過成長→腹部腫瘍サーベイランス（腹部エコー）</strong>：
+<ul>
+<li><strong>Beckwith-Wiedemann(11p15)＝巨舌・臍帯ヘルニア・片側肥大 →
+Wilms腫瘍・肝芽腫</strong>（過成長＋腫瘍の本命）。</li>
+<li><strong>Sotos(NSD1)</strong>＝過成長・大頭・発達遅滞。<strong>腫瘍リスクは軽度</strong>（サーベイランスの主役はBeckwith）。</li>
+</ul></li>
+<li>⚠️
+<strong>用語注意：Wilms腫瘍・神経芽腫は"胎児性腫瘍(embryonal)"であって"胚細胞腫瘍(germ
+cell)"ではない</strong>。</li>
+<li><strong>Bloom(BLM・DNA修復異常)／Holt-Oram</strong>
+は手元の過去問(2019–2025)に出題なし＝<strong>優先度低</strong>。</li>
+</ul>
+<h3 id="93-覚える遺伝子答えになる少数だけ">9.3
+覚える遺伝子（答えになる少数だけ）</h3>
+<p>NSD1(Sotos)／HRAS(Costello)／PTPN11(Noonan)／TBX1(22q11)／ELN(Williams)／TBX5(Holt-Oram)／FBN1(Marfan)／WT1(WAGR)。</p>
+<hr />
+</body>
+</html>
