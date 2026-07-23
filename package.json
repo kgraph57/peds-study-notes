@@ -1,0 +1,7 @@
+{
+  "name": "peds-study-notes",
+  "private": true,
+  "scripts": {
+    "test": "node --check app.js && node --check visuals.js && node --test tests/site.test.mjs"
+  }
+}

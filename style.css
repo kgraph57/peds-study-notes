@@ -122,6 +122,69 @@ h2.rev-dim-h:hover{color:var(--teal-d);border-bottom-color:var(--line)}
 :root[data-theme="dark"] .rev-memo textarea:focus{background:#12181d;box-shadow:0 0 0 3px rgba(64,180,216,.15)}
 :root[data-theme="dark"] h2.rev-dim-h{color:#5a656c;border-bottom-color:#222a30}
 
+/* ===== Visual Study Notes ===== */
+:root{
+  --oxygenated:#c43d4b;--venous:#2878b8;--mixed:#7553a6;
+  --amber:#a45b08;--paper:#fbfaf7;--focus:#f2f7f8;
+}
+.study-tools{display:grid;gap:.75rem;margin:0 0 1.2rem;padding:1rem;border:1px solid var(--line);border-radius:16px;background:var(--soft)}
+.study-search{display:grid;gap:.35rem;font-size:.72rem;font-weight:800;letter-spacing:.08em;color:var(--muted)}
+.study-search input{width:100%;min-height:48px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:inherit;padding:.7rem .9rem}
+.study-search input:focus-visible,.filter-chips button:focus-visible,.visual-mode-toggle:focus-visible,.source-link:focus-visible,.card:focus-visible{outline:3px solid color-mix(in srgb,var(--teal) 40%,transparent);outline-offset:3px}
+.filter-chips{display:flex;gap:.45rem;overflow:auto;padding:2px}
+.filter-chips button,.visual-mode-toggle{min-height:42px;border:1px solid var(--line);border-radius:999px;background:var(--bg);color:var(--ink);font:700 .78rem/1 inherit;padding:.55rem .9rem;white-space:nowrap;cursor:pointer}
+.filter-chips button.is-active{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.visual-mode-toggle{float:right;margin:-.45rem 3.5rem -.4rem 0;color:var(--teal-d)}
+.reading-position{position:fixed;left:0;right:0;top:0;height:3px;z-index:100;background:transparent}
+.reading-position span{display:block;width:0;height:100%;background:var(--teal)}
+.visual-atlas{margin:1.4rem 0 3.5rem}
+.exam-focus{display:grid;gap:.35rem;padding:1rem 1.05rem;border:1px solid color-mix(in srgb,var(--teal) 28%,var(--line));border-radius:14px;background:var(--focus)}
+.exam-focus span,.atlas-heading p{font-size:.67rem;font-weight:900;letter-spacing:.14em;color:var(--teal-d);margin:0}
+.exam-focus strong{font-size:.94rem;line-height:1.65;color:var(--ink)}
+.atlas-heading{margin:2.5rem 0 1rem}
+.atlas-heading h2{font-size:1.45rem;margin:.2rem 0;border:0;padding:0}
+.visual-card{margin:1rem 0 1.35rem;padding:1.05rem;border:1px solid var(--line);border-radius:18px;background:var(--paper);box-shadow:0 10px 30px rgba(24,38,46,.05);scroll-margin-top:5rem;overflow:hidden}
+.visual-card h2{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;margin:0 0 1rem;padding:0 0 .75rem;font-size:1.12rem;border-bottom:1px solid var(--line)}
+.importance{flex:0 0 auto;border-radius:999px;padding:.2rem .55rem;font-size:.62rem;line-height:1.4;letter-spacing:.04em}
+.importance--top{background:#8f2632;color:#fff}.importance--high{background:#e8d4ac;color:#5e3b03}.importance--note{background:var(--soft);color:var(--muted)}
+.diagram{display:flex;align-items:stretch;gap:.45rem;max-width:100%;overflow-x:auto;padding:.25rem .1rem .85rem;scroll-snap-type:x proximity}
+.diagram-node{display:flex;align-items:flex-start;gap:.55rem;min-width:132px;flex:1 0 132px;padding:.75rem;border:1px solid var(--line);border-radius:12px;background:var(--bg);font-size:.78rem;line-height:1.5;scroll-snap-align:start}
+.diagram-node .step{display:grid;place-items:center;flex:0 0 1.35rem;height:1.35rem;border-radius:50%;background:var(--ink);color:var(--bg);font-size:.65rem;font-weight:900}
+.diagram-node.oxygenated{border-color:color-mix(in srgb,var(--oxygenated) 55%,var(--line));color:var(--oxygenated)}
+.diagram-node.venous{border-color:color-mix(in srgb,var(--venous) 55%,var(--line));color:var(--venous)}
+.diagram-node.mixed{border-color:color-mix(in srgb,var(--mixed) 55%,var(--line));color:var(--mixed)}
+.diagram-arrow{display:grid;place-items:center;flex:0 0 1.2rem;color:var(--muted);font-weight:900}
+.visual-card--compare .diagram{display:grid;grid-template-columns:1fr 1fr;overflow:visible}
+.visual-card--compare .diagram-node{min-width:0}.visual-card--compare .diagram-arrow{display:none}
+.takeaway{display:grid;gap:.25rem;margin:.25rem 0 1rem;padding:.8rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:.85rem;line-height:1.65}
+.takeaway strong{font-size:.68rem;letter-spacing:.08em;color:var(--teal-d)}
+.exam-grid{display:grid;gap:.6rem}
+.exam-box{padding:.75rem;border-radius:12px;background:var(--bg);border:1px solid var(--line)}
+.exam-box>span{display:block;font-size:.63rem;font-weight:900;letter-spacing:.08em;margin-bottom:.25rem;color:var(--muted)}
+.exam-box p{font-size:.78rem;line-height:1.55;margin:0}
+.exam-box--hit{border-left:4px solid var(--teal)}.exam-box--trap{border-left:4px solid #c36a2d}.exam-box--review{border-left:4px solid var(--mixed)}
+.source-link{display:inline-flex;min-height:44px;align-items:center;margin-top:.7rem;font-size:.7rem;line-height:1.45;color:var(--teal-d);text-underline-offset:3px}
+.is-visual-review body{}.is-visual-review #TOC,.is-visual-review h1,.is-visual-review .rev-progress,.is-visual-review .visual-atlas~*{display:none!important}
+.is-visual-review .visual-atlas,.is-visual-review .visual-atlas *{display:revert}
+.is-visual-review .visual-atlas{margin-top:1rem}
+@media(min-width:700px){
+  .study-tools{grid-template-columns:minmax(280px,1fr) auto;align-items:end}
+  .exam-grid{grid-template-columns:repeat(3,1fr)}
+  .diagram{overflow:visible}.diagram-node{min-width:0}
+  nav#TOC{position:sticky;top:3.8rem;z-index:3;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(8px)}
+}
+@media(max-width:520px){
+  body{padding-left:.85rem;padding-right:.85rem;font-size:16.5px}
+  .visual-card{margin-left:-.15rem;margin-right:-.15rem;padding:.85rem;border-radius:15px}
+  .visual-card--compare .diagram{grid-template-columns:1fr}
+  .visual-mode-toggle{margin-right:3rem}
+  h2 .rev-ctl{float:none;display:flex;width:100%;margin:.65rem 0 .15rem;justify-content:space-between}
+  .rev-seg__btn,.rev-memo-toggle{min-height:38px;padding:.35rem .65rem}
+}
+:root[data-theme="dark"]{--paper:#12191e;--focus:#142127}
+:root[data-theme="dark"] .diagram-node,:root[data-theme="dark"] .exam-box{background:#10161a}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
 /* ===== 読み物用タイポグラフィ ===== */
 body{max-width:760px;font-size:17.5px;line-height:1.95}
 body:has(.cards){max-width:900px}          /* 目次ホームだけ広く */
