@@ -47,3 +47,7 @@ test('既存の学習状態・メモ保存機能を維持する', () => {
   assert.match(app, /覚えた/);
   assert.match(app, /memoKey/);
 });
+
+test('Vercel設定が有効なJSONである', () => {
+  assert.doesNotThrow(() => JSON.parse(fs.readFileSync(path.join(root, 'vercel.json'), 'utf8')));
+});
