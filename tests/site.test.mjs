@@ -51,3 +51,7 @@ test('既存の学習状態・メモ保存機能を維持する', () => {
 test('Vercel設定が有効なJSONである', () => {
   assert.doesNotThrow(() => JSON.parse(fs.readFileSync(path.join(root, 'vercel.json'), 'utf8')));
 });
+
+test('トップページのタイトルがVisual Study Notesである', () => {
+  assert.match(fs.readFileSync(path.join(root, 'index.html'), 'utf8'), /<title>小児科 Visual Study Notes<\/title>/);
+});
