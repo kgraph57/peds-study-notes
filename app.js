@@ -212,6 +212,23 @@
     atlas.innerHTML='<div class="exam-focus"><span>試験頻出ポイント</span><strong></strong></div>'
       +'<div class="atlas-heading"><p>VISUAL STUDY NOTES</p><h2 id="visual-atlas-title">図で理解 → 表で比較 → 本文で固定</h2></div>';
     atlas.querySelector('.exam-focus strong').textContent=page.exam;
+    if(page.image){
+      var figure=document.createElement('figure');
+      figure.className='memory-image';
+      var image=document.createElement('img');
+      image.src=page.image.src;
+      image.alt=page.image.alt;
+      image.width=1280;
+      image.height=720;
+      image.loading='eager';
+      image.decoding='async';
+      var caption=document.createElement('figcaption');
+      caption.innerHTML='<strong>画像でつかむ</strong><span></span>';
+      caption.lastChild.textContent=page.image.caption;
+      figure.appendChild(image);
+      figure.appendChild(caption);
+      atlas.insertBefore(figure,atlas.querySelector('.atlas-heading'));
+    }
     page.visuals.forEach(function(v,i){
       var article=document.createElement('article');
       article.className='visual-card visual-card--'+v.type;
