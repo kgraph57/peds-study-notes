@@ -15,8 +15,9 @@
     emergency: { label: 'AHA/AAP 2025 Pediatric BLS', url: 'https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines/pediatric-basic-life-support' },
     ethics: { label: '日本小児科学会 疾患別ガイド・ガイドライン', url: 'https://www.jpeds.or.jp/society-activities/column/gideline/50153.html' }
   };
-  const V = (title, importance, type, nodes, takeaway, oneShot, trap, review, source) =>
-    ({ title, importance, type, nodes, takeaway, oneShot, trap, review, source });
+  const I = (src, alt, caption) => ({ src, alt, caption });
+  const V = (title, importance, type, nodes, takeaway, oneShot, trap, review, source, image) =>
+    ({ title, importance, type, nodes, takeaway, oneShot, trap, review, source, image });
 
   window.PEDS_VISUALS = { pages: {
     '循環器_Visual_Study_Notes': { title: '循環器', exam: '血流を描ければ、雑音・チアノーゼ・発症時期が同時に解ける。', image: {
@@ -41,7 +42,7 @@
       recall: '肺が開く → PVR↓ → 左右シャント↑ → 肺血流↑ → 心不全',
       sources: [S.heart]
     }, visuals: [
-      V('左右シャントとVSD・ASD・PDA・AVSD', '最頻出', 'compare', ['VSD：全収縮期雑音', 'ASD：Ⅱ音固定性分裂', 'PDA：連続性雑音・脈圧開大', 'AVSD：Down症候群と関連', 'PVR低下後に短絡増加'], '短絡部位の比較と、肺血管抵抗が下がって症状が出る時間軸を重ねる。', '生後数週から多呼吸＋体重増加不良＝大きいVSDをまず考える。', '出生直後に無症状だから大短絡を否定する。', 'VSD全収縮期、ASD固定性分裂、PDA連続性。', S.heart),
+      V('左右シャントとVSD・ASD・PDA・AVSD', '最頻出', 'compare', ['VSD：全収縮期雑音', 'ASD：Ⅱ音固定性分裂', 'PDA：連続性雑音・脈圧開大', 'AVSD：Down症候群と関連', 'PVR低下後に短絡増加'], '短絡部位の比較と、肺血管抵抗が下がって症状が出る時間軸を重ねる。', '生後数週から多呼吸＋体重増加不良＝大きいVSDをまず考える。', '出生直後に無症状だから大短絡を否定する。', 'VSD全収縮期、ASD固定性分裂、PDA連続性。', S.heart, I('assets/infographics/cardiology-left-right-shunt.jpg', '左右シャントが肺血管抵抗低下後に増える時間軸と、VSD・ASD・PDA・AVSDの試験所見を比較した日本語図解', 'PVR低下後の症状出現と、4疾患の雑音・血流を一枚で比較。')),
       V('動脈管依存性：肺血流か体血流か', '最頻出', 'compare', ['肺血流依存：肺動脈閉鎖など→PDAで肺へ', '体血流依存：HLHSなど→PDAで全身へ', '疑えばPGE₁で動脈管維持'], '動脈管が閉じると急変する病変を、流れの「行き先」で二分する。', '新生児の説明困難な低酸素／ショック＋日齢進行＝duct-dependent lesion。', '酸素化だけを待ち、循環不全を見落とす。', 'PDAが肺へ送るか、全身へ送るか。', S.heart),
       V('TGA：並列循環を混ぜる3つの交通路', '最頻出', 'flow', ['体静脈→右室→大動脈→体', '肺静脈→左室→肺動脈→肺', 'ASD/PFO・VSD・PDAで混合', '混合不十分ならBAS'], 'TGAは「直列」ではなく「並列」。生存には二循環間の混合が必要。', '出生直後から強いチアノーゼ、肺雑音に乏しい＝TGA。', 'PDAだけあれば必ず十分に混合する、と決めつける。', 'TGA＝parallel。ASD/VSD/PDA＝mixing。', S.heart),
       V('単心室修復：Norwood→Glenn→Fontan', '頻出', 'flow', ['Norwood：体血流路を再建', 'Glenn：SVCを肺動脈へ', 'Fontan：IVCも肺動脈へ', '単心室は体循環を担当'], '段階手術は、静脈還流を心室ポンプから順に切り離して肺へ送る設計。', 'HLHS＋段階手術名の組合せを即答。', 'Fontanを二心室修復とする。', 'Norwood＝新生児、Glenn＝上大静脈、Fontan＝全身静脈。', S.heart),
@@ -72,7 +73,7 @@
       recall: '呼吸 → PVR↓／クランプ → SVR↑／左房圧↑ → 卵円孔閉鎖方向',
       sources: [S.neonatal, S.nrp]
     }, visuals: [
-      V('胎児循環→新生児循環', '最頻出', 'flow', ['最初の呼吸', '肺胞拡張・PVR低下', '肺血流増加', '左房圧上昇→卵円孔機能閉鎖', '酸素上昇→動脈管収縮'], '呼吸開始が循環切替の起点。移行が破綻するとPPHNやduct-dependent lesionが表面化する。', '右手＝pre-ductal、下肢＝post-ductal。', '左右の下肢を比較してpre/post-ductalとする。', '肺が開く→PVR低下→肺血流増加。', S.neonatal),
+      V('胎児循環→新生児循環', '最頻出', 'flow', ['最初の呼吸', '肺胞拡張・PVR低下', '肺血流増加', '左房圧上昇→卵円孔機能閉鎖', '酸素上昇→動脈管収縮'], '呼吸開始が循環切替の起点。移行が破綻するとPPHNやduct-dependent lesionが表面化する。', '右手＝pre-ductal、下肢＝post-ductal。', '左右の下肢を比較してpre/post-ductalとする。', '肺が開く→PVR低下→肺血流増加。', S.neonatal, I('assets/infographics/neonatal-transition-resuscitation.jpg', '胎児循環から新生児循環への移行、pre-ductalとpost-ductal、新生児蘇生で換気を優先する流れを示した日本語図解', '循環移行と新生児蘇生の初動を、一つの時間軸で整理。')),
       V('RDS・TTN・MAS・PPHN', '最頻出', 'compare', ['RDS：早産・サーファクタント不足', 'TTN：帝切・肺液吸収遅延', 'MAS：胎便・過膨張/無気肺', 'PPHN：右左シャント・前後SpO₂差'], '発症背景、胸部画像、酸素化の3軸で比較する。', '早産＋すりガラス状＝RDS、正期産帝切＋一過性＝TTN。', 'PPHNを単純な肺実質疾患だけで説明する。', '早産RDS、帝切TTN、胎便MAS、差がPPHN。', S.neonatal),
       V('2025新生児蘇生：換気が最優先', '最頻出', 'algorithm', ['保温・乾燥・刺激・評価', '無呼吸/喘ぎ or HR<100→換気', '胸郭が動く有効換気30秒', 'HR<60→胸骨圧迫を追加', '蘇生後管理'], '心拍上昇が有効換気の最良の指標。胸骨圧迫前に肺を確実に膨らませる。', 'HR<100/分なら換気、HR<60/分が続けば圧迫。', '換気が不十分なまま胸骨圧迫へ進む。', '新生児蘇生の主役は換気。', S.nrp),
       V('黄疸：日齢と抱合/非抱合で分ける', '頻出', 'algorithm', ['24時間以内＝病的を疑う', '非抱合優位：溶血・哺乳関連など', '抱合型優位：胆汁うっ滞を検索', '在胎週数・日齢別に治療閾値判断'], '「何mg/dLか」だけでなく、日齢・在胎週数・分画で判断する。', '灰白色便＋直接ビリルビン上昇＝胆道閉鎖を急ぐ。', '母乳性黄疸として抱合型黄疸を経過観察。', '早い黄疸、直接型、灰白色便は病的。', S.neonatal),
@@ -101,7 +102,7 @@
       recall: 'アルカローシス＝UCD／アシドーシス＋ケトン＝OA／低ケトン低血糖＝FAOD',
       sources: [S.ucd, S.endocrine]
     }, visuals: [
-      V('高アンモニア血症の3分岐', '最頻出', 'algorithm', ['血糖・血液ガス・ケトンを同時採取', '呼吸性アルカローシス→尿素サイクル障害', '低血糖/非ケトン→脂肪酸酸化障害', '代謝性アシドーシス/ケトン→有機酸血症'], 'アンモニア値だけで病名を当てず、酸塩基・血糖・ケトンで初期分岐する。', '高NH₃＋呼吸性アルカローシス＝尿素サイクル障害。', '採血完了まで異化抑制を遅らせる。', 'アルカローシスUCD、非ケトン低血糖FAOD、アシドーシスOA。', S.endocrine),
+      V('高アンモニア血症の3分岐', '最頻出', 'algorithm', ['血糖・血液ガス・ケトンを同時採取', '呼吸性アルカローシス→尿素サイクル障害', '低血糖/非ケトン→脂肪酸酸化障害', '代謝性アシドーシス/ケトン→有機酸血症'], 'アンモニア値だけで病名を当てず、酸塩基・血糖・ケトンで初期分岐する。', '高NH₃＋呼吸性アルカローシス＝尿素サイクル障害。', '採血完了まで異化抑制を遅らせる。', 'アルカローシスUCD、非ケトン低血糖FAOD、アシドーシスOA。', S.endocrine, I('assets/infographics/metabolism-hyperammonemia.jpg', '高アンモニア血症を尿素サイクル異常、有機酸血症、脂肪酸酸化障害の三つへ分ける検査所見と初期対応の日本語図解', '血液ガス・血糖・ケトンで3分岐し、異化抑制を急ぐ。')),
       V('21水酸化酵素欠損：遮断と迂回', '最頻出', 'flow', ['21水酸化酵素低下', 'コルチゾール↓・アルドステロン↓', 'ACTH↑→副腎過形成', 'アンドロゲン経路へ迂回', '塩喪失・男性化'], '遮断部位より上流がたまり、アンドロゲン側へ流れる。', '乳児の嘔吐・脱水・低Na・高K＋女児外性器男性化。', '17-OHPではなく17-OHCS上昇と混同する。', 'cortisol↓、aldosterone↓、androgen↑、17-OHP↑。', S.endocrine),
       V('Ca・P・PTH・ビタミンD', '頻出', 'compare', ['PTH：Ca↑・P↓', '活性型VitD：Ca↑・P↑', '腎不全：P↑→Ca↓→二次性PTH↑', '副甲状腺機能低下：Ca↓・P↑'], 'PTHとビタミンDはCaを上げるが、Pへの作用が逆。', '低Ca＋高P＝PTH不足/抵抗性を考える。', 'ビタミンD欠乏を高Pとする。', 'PTHはPを捨てる、VitDはCa/Pを吸収。', S.endocrine),
       V('SIADH・CSWS・尿崩症', '最頻出', 'compare', ['SIADH：低Na・濃い尿・循環血液量ほぼ正常', 'CSWS：低Na・尿Na高値・脱水/体重減少', '中枢性DI：高Na・薄い尿・DDAVP反応', '腎性DI：高Na・薄い尿・DDAVP乏しい'], '血清Naだけでなく、体液量と尿浸透圧で横断比較する。', '低Na＋体重減少＝CSWSを支持。', 'SIADHとCSWSを同じ水制限で扱う。', '低Naは体液量、高NaはDDAVP反応。', S.endocrine),
@@ -146,10 +147,12 @@
       recall: '父子あり→Xではない／縦に続く→AD／同胞に集まる→AR／母系のみ→mtDNA',
       sources: [S.genetics]
     }, visuals: [
-      V('AD・AR・X連鎖・母系遺伝', '最頻出', 'compare', ['AD：世代ごと・男女同等', 'AR：同胞内・血族婚・男女同等', 'XLR：男性優位・父→息子なし', 'ミトコンドリア：母から全児へ'], '遺伝形式は「父から息子」「母から誰へ」の2問で大きく絞れる。', '父→息子伝達があればX連鎖を否定。', '保因者母の全ての男児が発症するとする。', '父子伝達でXを切り、母系ならmtDNA。', S.genetics),
-      V('Robertson転座とDown症候群', '最頻出', 'flow', ['14番と21番の長腕が融合', '均衡保因者は45本でも表現型正常', '配偶子形成で不均衡', '21q過剰→転座型Down'], '染色体「本数」より、21番長腕のコピー数を見る。', '46,XX,der(14;21)(q10;q10),+21＝転座型Down。', '転座型を全てde novoとして親の核型を調べない。', 'der(14;21)+21＝21qが3コピー。', S.genetics),
-      V('Prader-WilliとAngelman', '頻出', 'compare', ['父由来15q11-q13欠失/発現喪失→PWS', '母由来15q11-q13欠失/UBE3A発現喪失→AS', 'PWS：乳児筋緊張低下→過食', 'AS：重度発達遅滞・失調・笑い'], '同じ領域でも親由来で表現型が変わる＝ゲノムインプリンティング。', '乳児期floppyの後に過食・肥満＝PWS。', '「欠失部位だけ」で両者を区別する。', '父PWS、母Angelman。', S.genetics),
-      V('Turner・Klinefelter・22q11.2欠失', '頻出', 'compare', ['Turner：45,X・低身長・性腺機能不全', 'Klinefelter：47,XXY・高身長・小精巣', '22q11.2欠失：心奇形・低Ca・胸腺低形成'], '体格・性腺・心臓/免疫の軸で比較する。', '円錐動脈幹心奇形＋低Ca＝22q11.2欠失。', '通常核型だけで微細欠失を除外する。', 'Turner低身長、XXY高身長、22qは心・Ca・胸腺。', S.genetics)
+      V('AD・AR・X連鎖・母系遺伝', '最頻出', 'compare', ['AD：世代ごと・男女同等', 'AR：同胞内・血族婚・男女同等', 'XLR：男性優位・父→息子なし', 'ミトコンドリア：母から全児へ'], '遺伝形式は「父から息子」「母から誰へ」の2問で大きく絞れる。', '父→息子伝達があればX連鎖を否定。', '保因者母の全ての男児が発症するとする。', '父子伝達でXを切り、母系ならmtDNA。', S.genetics, I('assets/infographics/genetics-inheritance-patterns.jpg', '常染色体優性、常染色体劣性、X連鎖劣性、ミトコンドリア遺伝を家系図と試験所見で比較した日本語図解', '父子伝達、世代性、同胞集積、母系遺伝の順で判定。')),
+      V('Robertson転座', '最頻出', 'flow', ['14番と21番の長腕が融合', '均衡保因者は45本でも表現型正常', '配偶子形成で不均衡', '21q過剰→転座型Down'], 'Robertson転座は「短腕を失っても均衡」「配偶子では不均衡が生じる」の二段階で理解する。', '均衡保因者は45本でも表現型正常。', '染色体数だけで正常・異常を判断する。', '45本の保因者→不均衡配偶子→転座型Down。', S.genetics, I('assets/infographics/genetics-robertsonian-translocation.jpg', 'Robertson転座の長腕融合、45本の均衡保因者、配偶子形成、転座型Down症候群までを示した日本語図解', '本数ではなく長腕の過不足を見る。転座型では両親の核型も確認。')),
+      V('染色体異常とDown症候群の3型', '最頻出', 'compare', ['数的異常：異数性・倍数性', '構造異常：欠失・重複・逆位・転座', 'Down：標準型・転座型・モザイク型', '核型を染色体コピー数へ翻訳'], '核型は「総数」「構造」「21qコピー数」の順に日本語へ翻訳する。', '46,XX,der(14;21)(q10;q10),+21＝転座型Down。', '46本だから正常核型と判断する。', '標準型47本、転座型は46本もある、モザイクは細胞集団が複数。', S.genetics, I('assets/infographics/genetics-chromosome-abnormalities.jpg', '染色体の数的異常と構造異常、Down症候群の標準型・転座型・モザイク型、核型の読み方をまとめた日本語図解', '46本でも転座型Downはありうる。21qのコピー数を読む。')),
+      V('ゲノムインプリンティング：Prader-WilliとAngelman', '最頻出', 'compare', ['父由来15q11-q13の発現喪失→PWS', '母由来15q11-q13のUBE3A発現喪失→AS', 'PWS：乳児筋緊張低下→過食', 'AS：重度発達遅滞・失調・笑い'], '同じ15q11-q13でも、発現を失った親由来アレルで表現型が変わる。', '乳児期floppyの後に過食・肥満＝PWS。', '「欠失部位だけ」で両者を区別する。', '父由来の発現喪失PWS、母由来の発現喪失Angelman。', S.genetics, I('assets/infographics/genetics-imprinting.jpg', 'ゲノムインプリンティングと、父由来発現喪失によるPrader-Willi症候群、母由来発現喪失によるAngelman症候群を比較した日本語図解', '同じ領域でも親由来で疾患が変わる。')),
+      V('トリプレットリピート病と表現促進', '頻出', 'compare', ['脆弱X：FMR1 CGG・母由来で伸長しやすい', '筋強直性ジストロフィー1型：DMPK CTG', 'Huntington病：HTT CAG・父由来で伸長しやすい', '世代を重ねると発症早期化・重症化'], '反復配列が伸長するほど次世代で早発・重症化する表現促進を、親由来効果とセットで覚える。', '家系内で世代ごとに若年発症＝表現促進。', 'すべてのトリプレット病で同じ親由来効果とする。', '脆弱Xは母、Huntingtonは父、DM1はCTG。', S.genetics, I('assets/infographics/genetics-triplet-repeat.jpg', '脆弱X症候群、筋強直性ジストロフィー1型、Huntington病の反復配列、表現促進、親由来効果を比較した日本語図解', '反復伸長→次世代で早発・重症化。疾患ごとの配列と親由来を区別。')),
+      V('Turner・Klinefelter・22q11.2欠失', '頻出', 'compare', ['Turner：45,X・低身長・性腺機能不全', 'Klinefelter：47,XXY・高身長・小精巣', '22q11.2欠失：心奇形・低Ca・胸腺低形成'], '体格・性腺・心臓/免疫の軸で比較する。', '円錐動脈幹心奇形＋低Ca＝22q11.2欠失。', '通常核型だけで微細欠失を除外する。', 'Turner低身長、XXY高身長、22qは心・Ca・胸腺。', S.genetics, I('assets/infographics/genetics-turner-klinefelter-22q.jpg', 'Turner症候群、Klinefelter症候群、22q11.2欠失症候群の核型、体格、性腺、心奇形、免疫所見を比較した日本語図解', '低身長45,X、高身長47,XXY、円錐動脈幹心奇形と低Caは22q11.2。'))
     ]},
     '成長・発達・栄養_毎日確認シート': { title: '成長・発達・栄養', exam: '発達は一点の月齢暗記でなく、領域別の順序とred flagで評価する。', visuals: [
       V('発達マイルストーンの4レーン', '最頻出', 'flow', ['粗大運動：定頸→座位→独歩', '微細運動：把握→つまみ', '言語：喃語→有意語→二語文', '社会性：微笑→人見知り→共同注意'], '1領域だけか全領域かで、局在性と全般性の遅れを分ける。', '18か月で独歩なし、共同注意なしはred flag。', '修正月齢を使わず早産児を判定する。', '4レーンで並べ、退行は緊急評価。', S.growth),

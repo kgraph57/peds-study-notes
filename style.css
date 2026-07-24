@@ -187,6 +187,13 @@ h2.rev-dim-h:hover{color:var(--teal-d);border-bottom-color:var(--line)}
 .atlas-heading h2{font-size:1.45rem;margin:.2rem 0;border:0;padding:0}
 .visual-card{margin:1rem 0 1.35rem;padding:1.05rem;border:1px solid var(--line);border-radius:18px;background:var(--paper);box-shadow:0 10px 30px rgba(24,38,46,.05);scroll-margin-top:5rem;overflow:hidden}
 .visual-card h2{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;margin:0 0 1rem;padding:0 0 .75rem;font-size:1.12rem;border-bottom:1px solid var(--line)}
+.topic-infographic{margin:0 0 1rem;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#f7f4ec}
+.topic-infographic__link{position:relative;display:block;min-height:44px;background:#edf4f4}
+.topic-infographic__link:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:12px}
+.topic-infographic img{display:block;width:100%;height:auto;aspect-ratio:1672/941;object-fit:contain}
+.topic-infographic__zoom{position:absolute;right:.55rem;bottom:.55rem;display:inline-flex;align-items:center;min-height:38px;padding:.38rem .7rem;border:1px solid rgba(255,255,255,.55);border-radius:999px;background:rgba(17,31,38,.9);color:#fff;font-size:.68rem;font-weight:800;box-shadow:0 3px 12px rgba(0,0,0,.2)}
+.topic-infographic figcaption{display:flex;gap:.55rem;align-items:flex-start;padding:.65rem .8rem;background:var(--paper);color:var(--muted);font-size:.72rem;line-height:1.6}
+.topic-infographic figcaption strong{flex:0 0 auto;color:var(--teal-d);font-size:.64rem;letter-spacing:.07em}
 .importance{flex:0 0 auto;border-radius:999px;padding:.2rem .55rem;font-size:.62rem;line-height:1.4;letter-spacing:.04em}
 .importance--top{background:#8f2632;color:#fff}.importance--high{background:#e8d4ac;color:#5e3b03}.importance--note{background:var(--soft);color:var(--muted)}
 .diagram{display:flex;align-items:stretch;gap:.45rem;max-width:100%;overflow-x:auto;padding:.25rem .1rem .85rem;scroll-snap-type:x proximity}
@@ -232,6 +239,9 @@ h2.rev-dim-h:hover{color:var(--teal-d);border-bottom-color:var(--line)}
   .textbook-step:not(:last-child)::after{content:"↓";right:auto;left:1rem;top:auto;bottom:-.68rem;z-index:2}
   .textbook-clues__grid,.textbook-close{grid-template-columns:1fr}
   .visual-card{margin-left:-.15rem;margin-right:-.15rem;padding:.85rem;border-radius:15px}
+  .topic-infographic{margin-left:-.35rem;margin-right:-.35rem;border-radius:12px}
+  .topic-infographic__zoom{right:.4rem;bottom:.4rem;min-height:36px;padding:.3rem .6rem;font-size:.64rem}
+  .topic-infographic figcaption{display:grid;gap:.15rem;padding:.6rem .7rem}
   .visual-card--compare .diagram{grid-template-columns:1fr}
   .visual-mode-toggle{margin-right:3rem}
   h2 .rev-ctl{float:none;display:flex;width:100%;margin:.65rem 0 .15rem;justify-content:space-between}
@@ -239,6 +249,7 @@ h2.rev-dim-h:hover{color:var(--teal-d);border-bottom-color:var(--line)}
 }
 :root[data-theme="dark"]{--paper:#12191e;--focus:#142127}
 :root[data-theme="dark"] .diagram-node,:root[data-theme="dark"] .exam-box{background:#10161a}
+:root[data-theme="dark"] .topic-infographic{border-color:#3a454b;background:#0f1519}
 :root[data-theme="dark"] .textbook-figure{border-color:#3a454b;box-shadow:0 12px 32px rgba(0,0,0,.28)}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 

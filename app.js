@@ -213,7 +213,7 @@
     atlas.innerHTML='<div class="exam-focus"><span>試験頻出ポイント</span><strong></strong></div>'
       +'<div class="atlas-heading"><p>VISUAL STUDY NOTES</p><h2 id="visual-atlas-title">図で理解 → 表で比較 → 本文で固定</h2></div>';
     atlas.querySelector('.exam-focus strong').textContent=page.exam;
-    if(page.image&&page.summary){
+    if(page.usePageSummary&&page.image&&page.summary){
       var figure=document.createElement('figure');
       figure.className='textbook-figure';
 
@@ -301,6 +301,34 @@
       heading.querySelector('.importance').textContent=v.importance;
       heading.appendChild(document.createTextNode(v.title));
       article.appendChild(heading);
+      if(v.image){
+        var infographic=document.createElement('figure');
+        infographic.className='topic-infographic';
+        var imageLink=document.createElement('a');
+        imageLink.className='topic-infographic__link';
+        imageLink.href=v.image.src;
+        imageLink.target='_blank';
+        imageLink.rel='noopener noreferrer';
+        imageLink.setAttribute('aria-label',v.title+'の一枚図解を原寸で開く');
+        var topicImage=document.createElement('img');
+        topicImage.src=v.image.src;
+        topicImage.alt=v.image.alt;
+        topicImage.width=1672;
+        topicImage.height=941;
+        topicImage.loading=i<2?'eager':'lazy';
+        topicImage.decoding='async';
+        var zoomLabel=document.createElement('span');
+        zoomLabel.className='topic-infographic__zoom';
+        zoomLabel.textContent='原寸で拡大して読む ↗';
+        imageLink.appendChild(topicImage);
+        imageLink.appendChild(zoomLabel);
+        var imageCaption=document.createElement('figcaption');
+        imageCaption.innerHTML='<strong>一枚図解</strong><span></span>';
+        imageCaption.lastChild.textContent=v.image.caption;
+        infographic.appendChild(imageLink);
+        infographic.appendChild(imageCaption);
+        article.appendChild(infographic);
+      }
       var diagram=document.createElement('div');
       diagram.className='diagram';
       diagram.setAttribute('role','img');

@@ -29,27 +29,27 @@ test('各図表に試験対策の必須要素と一次資料リンクがある',
   }
 });
 
-test('主要暗記ページに日本語注釈つき参考書型まとめ図がある', () => {
-  for (const key of [
-    '循環器_Visual_Study_Notes',
-    '新生児_Visual_Study_Notes',
-    '内分泌・代謝_Visual_Study_Notes',
-    '遺伝_毎日確認シート',
-  ]) {
-    const image = data.pages[key].image;
-    assert.ok(image?.src, `${key}: image.src`);
-    assert.ok(image?.alt, `${key}: image.alt`);
-    assert.ok(image?.caption, `${key}: image.caption`);
-    const imagePath = path.join(root, image.src);
-    assert.ok(fs.existsSync(imagePath), `${key}: ${image.src}`);
-    assert.ok(fs.statSync(imagePath).size < 500_000, `${key}: image must be under 500 KB`);
-    const summary = data.pages[key].summary;
-    assert.ok(summary?.title, `${key}: summary.title`);
-    assert.ok(summary?.thesis, `${key}: summary.thesis`);
-    assert.ok(summary?.steps?.length >= 4, `${key}: four or more pathophysiology steps`);
-    assert.ok(summary?.clues?.length >= 3, `${key}: three or more exam clues`);
-    assert.ok(summary?.trap, `${key}: summary.trap`);
-    assert.ok(summary?.recall, `${key}: summary.recall`);
+test('各暗記項目に紐づく日本語の一枚図解が9点以上ある', () => {
+  const illustrated = Object.values(data.pages)
+    .flatMap((page) => page.visuals)
+    .filter((visual) => visual.image);
+  assert.ok(illustrated.length >= 9);
+  for (const visual of illustrated) {
+    assert.ok(visual.image.src, `${visual.title}: image.src`);
+    assert.ok(visual.image.alt, `${visual.title}: image.alt`);
+    assert.ok(visual.image.caption, `${visual.title}: image.caption`);
+    const imagePath = path.join(root, visual.image.src);
+    assert.ok(fs.existsSync(imagePath), `${visual.title}: ${visual.image.src}`);
+    assert.ok(fs.statSync(imagePath).size < 800_000, `${visual.title}: image must be under 800 KB`);
+  }
+});
+
+test('遺伝は項目別に6枚以上の図解を収録する', () => {
+  const genetics = data.pages['遺伝_毎日確認シート'].visuals;
+  assert.ok(genetics.length >= 6);
+  assert.ok(genetics.filter((visual) => visual.image).length >= 6);
+  for (const title of ['インプリンティング', 'トリプレットリピート', '染色体異常']) {
+    assert.ok(genetics.some((visual) => visual.title.includes(title)), title);
   }
 });
 
@@ -71,6 +71,7 @@ test('既存の学習状態・メモ保存機能を維持する', () => {
   assert.match(app, /覚えた/);
   assert.match(app, /memoKey/);
   assert.match(app, /closest\('\.textbook-figure'\)/);
+  assert.match(app, /topic-infographic/);
 });
 
 test('Vercel設定が有効なJSONである', () => {
