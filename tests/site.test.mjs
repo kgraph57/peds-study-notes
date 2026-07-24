@@ -29,7 +29,7 @@ test('各図表に試験対策の必須要素と一次資料リンクがある',
   }
 });
 
-test('主要暗記ページに軽量な生成画像と代替テキストがある', () => {
+test('主要暗記ページに日本語注釈つき参考書型まとめ図がある', () => {
   for (const key of [
     '循環器_Visual_Study_Notes',
     '新生児_Visual_Study_Notes',
@@ -43,6 +43,13 @@ test('主要暗記ページに軽量な生成画像と代替テキストがあ�
     const imagePath = path.join(root, image.src);
     assert.ok(fs.existsSync(imagePath), `${key}: ${image.src}`);
     assert.ok(fs.statSync(imagePath).size < 500_000, `${key}: image must be under 500 KB`);
+    const summary = data.pages[key].summary;
+    assert.ok(summary?.title, `${key}: summary.title`);
+    assert.ok(summary?.thesis, `${key}: summary.thesis`);
+    assert.ok(summary?.steps?.length >= 4, `${key}: four or more pathophysiology steps`);
+    assert.ok(summary?.clues?.length >= 3, `${key}: three or more exam clues`);
+    assert.ok(summary?.trap, `${key}: summary.trap`);
+    assert.ok(summary?.recall, `${key}: summary.recall`);
   }
 });
 
@@ -63,6 +70,7 @@ test('既存の学習状態・メモ保存機能を維持する', () => {
   assert.match(app, /あやしい/);
   assert.match(app, /覚えた/);
   assert.match(app, /memoKey/);
+  assert.match(app, /closest\('\.textbook-figure'\)/);
 });
 
 test('Vercel設定が有効なJSONである', () => {

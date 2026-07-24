@@ -9,6 +9,7 @@
     renal: { label: '日本小児腎臓病学会 ガイドライン', url: 'https://jspn01.umin.jp/guideline/' },
     neuro: { label: '日本小児神経学会 ガイドライン', url: 'https://www.childneuro.jp/modules/about/index.php?content_id=27' },
     genetics: { label: 'GeneReviews（NCBI Bookshelf）', url: 'https://www.ncbi.nlm.nih.gov/books/NBK1116/' },
+    ucd: { label: 'GeneReviews：Urea Cycle Disorders Overview', url: 'https://www.ncbi.nlm.nih.gov/books/NBK1217/' },
     growth: { label: '厚生労働省 授乳・離乳の支援ガイド（2019年改定版）', url: 'https://www.mhlw.go.jp/content/11908000/000488142.pdf' },
     vaccine: { label: '日本小児科学会 予防接種・感染症', url: 'https://www.jpeds.or.jp/society-activities/pediatric-medical-care/vaccination/' },
     emergency: { label: 'AHA/AAP 2025 Pediatric BLS', url: 'https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines/pediatric-basic-life-support' },
@@ -22,6 +23,23 @@
       src: 'assets/generated/circulation-transition.jpg',
       alt: '胎児期から出生後へ移る心肺血流を、静脈血は青、酸素化血は赤、混合血は紫で表した概念画像',
       caption: '出生後に肺血管抵抗が下がると、肺血流と左右シャントが増える。正確な交通路は続く血流図で確認する。'
+    }, summary: {
+      title: '左右シャントは「出生直後」ではなく「PVR低下後」に表面化する',
+      thesis: '肺血管抵抗（PVR）が高い出生直後は短絡が少ない。肺が開いてPVRが下がると左→右短絡が増え、肺うっ血と心不全症状が目立つ。',
+      steps: [
+        { label: '出生直後', detail: 'PVRがまだ高い', note: '大きなVSDでも目立たないことがある', tone: 'quiet' },
+        { label: '呼吸が安定', detail: '肺胞が開く', note: '酸素化と肺血流が増える', tone: 'blue' },
+        { label: '数日〜数週', detail: 'PVRが低下', note: '左室側から右室・肺動脈へ流れやすくなる', tone: 'purple' },
+        { label: '短絡増加', detail: 'Qpが増える', note: '多呼吸・哺乳不良・体重増加不良', tone: 'red' }
+      ],
+      clues: [
+        { cue: '出生直後は比較的元気', answer: '大きな左右シャントを否定しない' },
+        { cue: '生後数週から多呼吸＋哺乳不良', answer: '大きなVSDなどの肺血流増加' },
+        { cue: '連続性雑音＋脈圧開大', answer: 'PDAを想起' }
+      ],
+      trap: '「先天性心疾患なら出生直後から症状が強い」は誤り。発症時期は解剖だけでなくPVR低下の時間軸で決まる。',
+      recall: '肺が開く → PVR↓ → 左右シャント↑ → 肺血流↑ → 心不全',
+      sources: [S.heart]
     }, visuals: [
       V('左右シャントとVSD・ASD・PDA・AVSD', '最頻出', 'compare', ['VSD：全収縮期雑音', 'ASD：Ⅱ音固定性分裂', 'PDA：連続性雑音・脈圧開大', 'AVSD：Down症候群と関連', 'PVR低下後に短絡増加'], '短絡部位の比較と、肺血管抵抗が下がって症状が出る時間軸を重ねる。', '生後数週から多呼吸＋体重増加不良＝大きいVSDをまず考える。', '出生直後に無症状だから大短絡を否定する。', 'VSD全収縮期、ASD固定性分裂、PDA連続性。', S.heart),
       V('動脈管依存性：肺血流か体血流か', '最頻出', 'compare', ['肺血流依存：肺動脈閉鎖など→PDAで肺へ', '体血流依存：HLHSなど→PDAで全身へ', '疑えばPGE₁で動脈管維持'], '動脈管が閉じると急変する病変を、流れの「行き先」で二分する。', '新生児の説明困難な低酸素／ショック＋日齢進行＝duct-dependent lesion。', '酸素化だけを待ち、循環不全を見落とす。', 'PDAが肺へ送るか、全身へ送るか。', S.heart),
@@ -35,6 +53,24 @@
       src: 'assets/generated/neonatal-transition.jpg',
       alt: '胎児の液体で満たされた肺が最初の呼吸で拡張し、出生後の肺血流が増える過程の概念画像',
       caption: '最初の呼吸で肺胞が開き、肺血管抵抗が低下する。胎外生活への移行は呼吸開始が起点。'
+    }, summary: {
+      title: '出生で同時に起こる3変化を、呼吸・抵抗・シャントでつなぐ',
+      thesis: '最初の呼吸と臍帯クランプが、胎児の並列循環を新生児の直列循環へ切り替える。移行不全では胎児交通路を介する右→左短絡が残る。',
+      steps: [
+        { label: '最初の呼吸', detail: '肺胞が拡張', note: '肺血管が開く', tone: 'blue' },
+        { label: '肺循環', detail: 'PVR低下', note: '肺血流・肺静脈還流が増える', tone: 'purple' },
+        { label: '臍帯クランプ', detail: 'SVR上昇', note: '低抵抗の胎盤循環が外れる', tone: 'red' },
+        { label: '圧関係が逆転', detail: '左房圧＞右房圧', note: '卵円孔が機能的に閉鎖へ', tone: 'quiet' }
+      ],
+      clues: [
+        { cue: '右手SpO₂', answer: 'pre-ductal' },
+        { cue: '足のSpO₂', answer: 'post-ductal' },
+        { cue: '無呼吸・喘ぎ／HR＜100', answer: '有効換気を開始。心拍上昇が効果判定' },
+        { cue: '有効換気後もHR＜60', answer: '胸骨圧迫を追加' }
+      ],
+      trap: '新生児蘇生では胸骨圧迫より先に肺を確実に膨らませる。心拍が上がらないときは、まず換気の有効性を再評価する。',
+      recall: '呼吸 → PVR↓／クランプ → SVR↑／左房圧↑ → 卵円孔閉鎖方向',
+      sources: [S.neonatal, S.nrp]
     }, visuals: [
       V('胎児循環→新生児循環', '最頻出', 'flow', ['最初の呼吸', '肺胞拡張・PVR低下', '肺血流増加', '左房圧上昇→卵円孔機能閉鎖', '酸素上昇→動脈管収縮'], '呼吸開始が循環切替の起点。移行が破綻するとPPHNやduct-dependent lesionが表面化する。', '右手＝pre-ductal、下肢＝post-ductal。', '左右の下肢を比較してpre/post-ductalとする。', '肺が開く→PVR低下→肺血流増加。', S.neonatal),
       V('RDS・TTN・MAS・PPHN', '最頻出', 'compare', ['RDS：早産・サーファクタント不足', 'TTN：帝切・肺液吸収遅延', 'MAS：胎便・過膨張/無気肺', 'PPHN：右左シャント・前後SpO₂差'], '発症背景、胸部画像、酸素化の3軸で比較する。', '早産＋すりガラス状＝RDS、正期産帝切＋一過性＝TTN。', 'PPHNを単純な肺実質疾患だけで説明する。', '早産RDS、帝切TTN、胎便MAS、差がPPHN。', S.neonatal),
@@ -46,6 +82,24 @@
       src: 'assets/generated/hyperammonemia-branches.jpg',
       alt: '肝細胞の代謝環から、酵素障害、有機酸代謝、脂肪酸酸化の三方向へ分かれる高アンモニア血症の概念画像',
       caption: '高アンモニア血症は一つの病名ではない。酸塩基、血糖、ケトンを同時に見て三方向へ分ける。'
+    }, summary: {
+      title: '高アンモニア血症は「血液ガス・血糖・ケトン」で3分岐',
+      thesis: 'アンモニア値だけで病名を当てない。採血時点で酸塩基、血糖、ケトン、乳酸を同時に取り、異化を止めながら原因検索を進める。',
+      steps: [
+        { label: '分岐A', detail: '呼吸性アルカローシス', note: '尿素サイクル異常を強く示唆', tone: 'blue' },
+        { label: '分岐B', detail: '高AG代謝性アシドーシス', note: '有機酸血症を考える', tone: 'red' },
+        { label: '分岐C', detail: '低ケトン性低血糖', note: '脂肪酸酸化障害を考える', tone: 'purple' },
+        { label: '共通初動', detail: '異化を抑える', note: '治療と確定検査を並行', tone: 'quiet' }
+      ],
+      clues: [
+        { cue: '高NH₃＋呼吸性アルカローシス', answer: '尿素サイクル異常' },
+        { cue: '高NH₃＋ケトーシス＋高AGアシドーシス', answer: '有機酸血症' },
+        { cue: '低血糖なのにケトンが乏しい', answer: '脂肪酸酸化障害' },
+        { cue: 'OTC欠損', answer: 'X連鎖＋尿中オロト酸上昇' }
+      ],
+      trap: '尿素サイクル異常でも敗血症合併などではアシドーシスを呈しうる。典型パターンだけで除外せず、臨床状況と追加検査で確認する。',
+      recall: 'アルカローシス＝UCD／アシドーシス＋ケトン＝OA／低ケトン低血糖＝FAOD',
+      sources: [S.ucd, S.endocrine]
     }, visuals: [
       V('高アンモニア血症の3分岐', '最頻出', 'algorithm', ['血糖・血液ガス・ケトンを同時採取', '呼吸性アルカローシス→尿素サイクル障害', '低血糖/非ケトン→脂肪酸酸化障害', '代謝性アシドーシス/ケトン→有機酸血症'], 'アンモニア値だけで病名を当てず、酸塩基・血糖・ケトンで初期分岐する。', '高NH₃＋呼吸性アルカローシス＝尿素サイクル障害。', '採血完了まで異化抑制を遅らせる。', 'アルカローシスUCD、非ケトン低血糖FAOD、アシドーシスOA。', S.endocrine),
       V('21水酸化酵素欠損：遮断と迂回', '最頻出', 'flow', ['21水酸化酵素低下', 'コルチゾール↓・アルドステロン↓', 'ACTH↑→副腎過形成', 'アンドロゲン経路へ迂回', '塩喪失・男性化'], '遮断部位より上流がたまり、アンドロゲン側へ流れる。', '乳児の嘔吐・脱水・低Na・高K＋女児外性器男性化。', '17-OHPではなく17-OHCS上昇と混同する。', 'cortisol↓、aldosterone↓、androgen↑、17-OHP↑。', S.endocrine),
@@ -73,6 +127,24 @@
       src: 'assets/generated/inheritance-patterns.jpg',
       alt: '家系図、染色体対、複数の伝達経路を並べた遺伝形式の概念画像',
       caption: '家系図では、まず父から息子への伝達と、母から誰へ伝わるかを見る。細かな確率は続く比較図で固定する。'
+    }, summary: {
+      title: '家系図は「父→息子」と「母→全児」の2問から解く',
+      thesis: '最初に父子伝達の有無でX連鎖を切り、次に世代をまたぐか、同胞に集まるか、母系だけかを確認する。',
+      steps: [
+        { label: 'AD', detail: '各世代に出やすい', note: '男女同等・父子伝達ありうる', tone: 'red' },
+        { label: 'AR', detail: '同胞内に集まりやすい', note: '両親は無症候保因者のことが多い', tone: 'blue' },
+        { label: 'X連鎖', detail: '父→息子なし', note: 'XLRでは男性優位', tone: 'purple' },
+        { label: 'ミトコンドリア', detail: '母から全児へ', note: '罹患父からは伝わらない', tone: 'quiet' }
+      ],
+      clues: [
+        { cue: '父から息子へ伝達', answer: 'X連鎖を否定する手掛かり' },
+        { cue: '男女とも複数世代', answer: 'ADを支持' },
+        { cue: '無症候の両親＋同胞発症', answer: 'ARを支持' },
+        { cue: '罹患母から男女とも／罹患父からなし', answer: 'ミトコンドリア遺伝' }
+      ],
+      trap: '家族歴が陰性でもde novo、浸透率低下、軽症例、モザイクを考える。家系図だけで遺伝形式を断定しない。',
+      recall: '父子あり→Xではない／縦に続く→AD／同胞に集まる→AR／母系のみ→mtDNA',
+      sources: [S.genetics]
     }, visuals: [
       V('AD・AR・X連鎖・母系遺伝', '最頻出', 'compare', ['AD：世代ごと・男女同等', 'AR：同胞内・血族婚・男女同等', 'XLR：男性優位・父→息子なし', 'ミトコンドリア：母から全児へ'], '遺伝形式は「父から息子」「母から誰へ」の2問で大きく絞れる。', '父→息子伝達があればX連鎖を否定。', '保因者母の全ての男児が発症するとする。', '父子伝達でXを切り、母系ならmtDNA。', S.genetics),
       V('Robertson転座とDown症候群', '最頻出', 'flow', ['14番と21番の長腕が融合', '均衡保因者は45本でも表現型正常', '配偶子形成で不均衡', '21q過剰→転座型Down'], '染色体「本数」より、21番長腕のコピー数を見る。', '46,XX,der(14;21)(q10;q10),+21＝転座型Down。', '転座型を全てde novoとして親の核型を調べない。', 'der(14;21)+21＝21qが3コピー。', S.genetics),

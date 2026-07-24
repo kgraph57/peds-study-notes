@@ -34,6 +34,7 @@
     Array.prototype.forEach.call(document.querySelectorAll('h2'), function(h,i){
       if(/^\s*運用/.test(h.textContent)) return;           // メタ節は対象外
       if(h.closest('.atlas-heading')) return;
+      if(h.closest('.textbook-figure')) return;             // まとめ図は学習項目数に含めない
       if(h.id==='references') return;
       var key = h.id || ('sec'+i);
       items.push({ h2:h, stateKey:pfx+'item:'+key+':state', memoKey:pfx+'item:'+key+':memo' });
@@ -212,9 +213,20 @@
     atlas.innerHTML='<div class="exam-focus"><span>試験頻出ポイント</span><strong></strong></div>'
       +'<div class="atlas-heading"><p>VISUAL STUDY NOTES</p><h2 id="visual-atlas-title">図で理解 → 表で比較 → 本文で固定</h2></div>';
     atlas.querySelector('.exam-focus strong').textContent=page.exam;
-    if(page.image){
+    if(page.image&&page.summary){
       var figure=document.createElement('figure');
-      figure.className='memory-image';
+      figure.className='textbook-figure';
+
+      var intro=document.createElement('div');
+      intro.className='textbook-figure__intro';
+      var copy=document.createElement('figcaption');
+      copy.className='textbook-figure__copy';
+      copy.innerHTML='<span class="textbook-figure__eyebrow">専門医試験・まとめ図</span><h2></h2><p></p>';
+      copy.querySelector('h2').textContent=page.summary.title;
+      copy.querySelector('p').textContent=page.summary.thesis;
+
+      var art=document.createElement('div');
+      art.className='textbook-figure__art';
       var image=document.createElement('img');
       image.src=page.image.src;
       image.alt=page.image.alt;
@@ -222,11 +234,62 @@
       image.height=720;
       image.loading='eager';
       image.decoding='async';
-      var caption=document.createElement('figcaption');
-      caption.innerHTML='<strong>画像でつかむ</strong><span></span>';
-      caption.lastChild.textContent=page.image.caption;
-      figure.appendChild(image);
-      figure.appendChild(caption);
+      var artNote=document.createElement('span');
+      artNote.className='textbook-figure__art-note';
+      artNote.textContent='概念イメージ';
+      art.appendChild(image);
+      art.appendChild(artNote);
+      intro.appendChild(copy);
+      intro.appendChild(art);
+      figure.appendChild(intro);
+
+      var process=document.createElement('section');
+      process.className='textbook-process';
+      process.innerHTML='<div class="textbook-section-title"><span>01</span><h3>病態の流れ</h3></div><ol></ol>';
+      page.summary.steps.forEach(function(step){
+        var item=document.createElement('li');
+        item.className='textbook-step textbook-step--'+(step.tone||'quiet');
+        item.innerHTML='<span class="textbook-step__label"></span><strong></strong><small></small>';
+        item.querySelector('.textbook-step__label').textContent=step.label;
+        item.querySelector('strong').textContent=step.detail;
+        item.querySelector('small').textContent=step.note;
+        process.querySelector('ol').appendChild(item);
+      });
+      figure.appendChild(process);
+
+      var clues=document.createElement('section');
+      clues.className='textbook-clues';
+      clues.innerHTML='<div class="textbook-section-title"><span>02</span><h3>問題文で拾う所見</h3></div><div class="textbook-clues__grid"></div>';
+      page.summary.clues.forEach(function(clue){
+        var item=document.createElement('div');
+        item.className='textbook-clue';
+        item.innerHTML='<span></span><strong></strong>';
+        item.firstChild.textContent=clue.cue;
+        item.lastChild.textContent='→ '+clue.answer;
+        clues.querySelector('.textbook-clues__grid').appendChild(item);
+      });
+      figure.appendChild(clues);
+
+      var close=document.createElement('div');
+      close.className='textbook-close';
+      close.innerHTML='<div class="textbook-trap"><span>試験の引っかけ</span><p></p></div>'
+        +'<div class="textbook-recall"><span>30秒で再生</span><p></p></div>';
+      close.querySelector('.textbook-trap p').textContent=page.summary.trap;
+      close.querySelector('.textbook-recall p').textContent=page.summary.recall;
+      figure.appendChild(close);
+
+      var sources=document.createElement('div');
+      sources.className='textbook-sources';
+      sources.innerHTML='<span>確認資料</span>';
+      (page.summary.sources||[]).forEach(function(item){
+        var link=document.createElement('a');
+        link.href=item.url;
+        link.target='_blank';
+        link.rel='noopener noreferrer';
+        link.textContent=item.label+' ↗';
+        sources.appendChild(link);
+      });
+      figure.appendChild(sources);
       atlas.insertBefore(figure,atlas.querySelector('.atlas-heading'));
     }
     page.visuals.forEach(function(v,i){
