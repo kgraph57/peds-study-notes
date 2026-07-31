@@ -129,10 +129,10 @@ test('ローカル表示でも症例カードから詳細へ移動できる', ()
   assert.match(script, /localhost|127\.0\.0\.1/);
 });
 
-test('一覧カードに試験学習と権利確認に必要な情報を表示する', () => {
+test('フラッシュカードは診断前の画像と、回答後の所見・出典導線を表示する', () => {
   const script = fs.readFileSync(path.join(root, 'atlas/atlas.js'), 'utf8');
-  for (const field of ['ageGroup', 'difficulty', 'frequency', 'source.organization', 'source.licenseName']) {
-    assert.match(script, new RegExp(field.replace('.', '\\.')), field);
+  for (const field of [/item\.images\[0\]/, /item\.title/, /item\.keyFindings\[0\]/, /source\.organization/, /解答・解説と出典を見る/]) {
+    assert.match(script, field);
   }
 });
 
@@ -170,10 +170,11 @@ test('症例詳細に解答・解説と画像出典・解説引用元を分け�
   assert.match(script, /clinicalReferences/);
 });
 
-test('クイズモードを詳細ページへ引き継ぐ', () => {
+test('フラッシュカードと詳細ページのどちらも、最初は診断を隠して回答を開ける', () => {
   const script = fs.readFileSync(path.join(root, 'atlas/atlas.js'), 'utf8');
-  assert.match(script, /writeState\('quiz'/);
   assert.match(script, /readState\('quiz'/);
+  assert.match(script, /state\.revealed/);
+  assert.match(script, /data-reveal-card/);
   assert.match(script, /case-answer-hidden/);
 });
 
@@ -182,34 +183,37 @@ test('画像主役の標本台帳として統一し、AI的なカード装飾を
   const script = fs.readFileSync(path.join(root, 'atlas/atlas.js'), 'utf8');
   const styles = fs.readFileSync(path.join(root, 'atlas/atlas.css'), 'utf8');
 
-  assert.match(index, /atlas-ledger/);
+  assert.match(index, /flash-review/);
   assert.match(script, /case-dossier/);
   assert.doesNotMatch(script, /Answer &amp; rationale|learning-card|atlas-card__badge/);
   assert.doesNotMatch(styles, /gradient\(|box-shadow:/);
 });
 
-test('25分野ナビ・学習状態・頻出順で症例を探せる', () => {
+test('一覧を検索画面ではなく、未暗記を1枚ずつ回すフラッシュカードにする', () => {
   const index = fs.readFileSync(path.join(root, 'atlas/index.html'), 'utf8');
   const script = fs.readFileSync(path.join(root, 'atlas/atlas.js'), 'utf8');
-  for (const id of ['domain-rail', 'study-filter', 'availability-filter', 'sort-order', 'reset-filters', 'focus-toggle', 'learning-progress-bar', 'load-more']) {
+  for (const id of ['flashcard-root', 'remaining-count', 'learned-count', 'shaky-count', 'learning-progress-bar']) {
     assert.match(index, new RegExp(`id="${id}"`), id);
   }
-  assert.match(script, /renderDomainRail/);
-  assert.match(script, /sort: 'frequency'/);
+  assert.doesNotMatch(index, /25分野から探す|id="atlas-search"|id="category-filter"|id="domain-rail"/);
+  assert.match(script, /createReviewQueue/);
+  assert.match(script, /data-reveal-card/);
+  assert.match(script, /data-review-again/);
+  assert.match(script, /state\.queue\.push\(state\.queue\.shift\(\)\)/);
+  assert.match(script, /data-mark-known/);
+  assert.match(script, /state\.queue\.shift\(\)/);
+  assert.match(script, /data-review-again.*focus|data-reveal-card.*focus|nextControl\.focus/s);
   assert.match(script, /b\.frequency - a\.frequency/);
-  assert.match(script, /state\.study === 'unlearned'/);
-  assert.match(script, /state\.limit \+= 24/);
 });
 
-test('アトラスは覚えた症例を既定で隠し、あやしい症例を先に表示する', () => {
+test('覚えた症例はキューから除外し、もう一度の症例を先に出す', () => {
   const script = fs.readFileSync(path.join(root, 'atlas/atlas.js'), 'utf8');
-  assert.match(script, /showKnown:\s*false/);
-  assert.match(script, /state\.showKnown/);
-  assert.match(script, /masteryRank/);
-  assert.match(script, /覚えた.*件を表示/);
-  assert.match(script, /if \(state\.study\) renderIndex\(\);|renderIndex\(\)/);
-  assert.match(script, /cases\.json\?v=20260731k/);
-  assert.match(script, /coverage-plan\.json\?v=20260731k/);
+  assert.match(script, /getMastery\(item\.slug\) !== 'known'/);
+  assert.match(script, /getMastery\(a\.slug\) === 'shaky'/);
+  assert.match(script, /setMastery\(item\.slug, 'known'\)/);
+  assert.match(script, /setMastery\(item\.slug, 'shaky'\)/);
+  assert.match(script, /cases\.json\?v=20260731l/);
+  assert.match(script, /coverage-plan\.json\?v=20260731l/);
 });
 
 test('転載できない症例も空欄にせず、原典と区別した学習用模式図を表示する', () => {

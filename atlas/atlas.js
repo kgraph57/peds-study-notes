@@ -3,8 +3,7 @@
 
   var STORE = 'pboard:v1:atlas';
   var state = {
-    cases: [], coverage: null, query: '', category: '', modality: '', domain: '',
-    study: '', availability: '', sort: 'frequency', quiz: false, showKnown: false, limit: 24,
+    cases: [], coverage: null, queue: [], revealed: false,
   };
 
   function readState(key) {
@@ -83,8 +82,8 @@
 
   async function loadAtlasData() {
     var responses = await Promise.all([
-      fetch('/data/atlas/cases.json?v=20260731k'),
-      fetch('/data/atlas/coverage-plan.json?v=20260731k'),
+      fetch('/data/atlas/cases.json?v=20260731l'),
+      fetch('/data/atlas/coverage-plan.json?v=20260731l'),
     ]);
     if (!responses[0].ok || !responses[1].ok) throw new Error('症例データを取得できませんでした。');
     return Promise.all(responses.map(function (response) { return response.json(); }));
@@ -130,136 +129,78 @@
   }
 
   function renderIndex() {
-    var grid = document.getElementById('atlas-grid');
-    var values = state.cases.filter(function (item) {
-      var haystack = [
-        item.title, item.category, item.clinicalSummary,
-        item.images[0].modality, item.keyFindings.join(' '),
-      ].join(' ').toLowerCase();
-      return (!state.query || haystack.indexOf(state.query) >= 0)
-        && (!state.category || item.category === state.category)
-        && (!state.modality || item.images.some(function (image) { return image.modality === state.modality; }))
-        && (!state.availability
-          || (state.availability === 'local' && item.images.some(function (image) { return Boolean(image.src); }))
-          || (state.availability === 'link' && item.images.every(function (image) { return !image.src; })))
-        && (!state.domain || item.curriculumDomain === state.domain)
-        && (state.showKnown || state.study || getMastery(item.slug) !== 'known')
-        && (!state.study
-          || (state.study === 'learned' && getMastery(item.slug) === 'known')
-          || (state.study === 'shaky' && getMastery(item.slug) === 'shaky')
-          || (state.study === 'unlearned' && getMastery(item.slug) === '')
-          || (state.study === 'favorite' && readState('favorite:' + item.slug) === '1'));
-    });
-    function masteryRank(item) {
-      var mastery = getMastery(item.slug);
-      return mastery === 'shaky' ? 0 : mastery === 'known' ? 2 : 1;
-    }
-    values.sort(function (a, b) {
-      var focusOrder = masteryRank(a) - masteryRank(b);
-      if (focusOrder) return focusOrder;
-      if (state.sort === 'newest') return b.id - a.id;
-      if (state.sort === 'difficulty') return b.difficulty - a.difficulty || b.frequency - a.frequency;
-      if (state.sort === 'number') return a.id - b.id;
-      return b.frequency - a.frequency || b.typicality - a.typicality || a.id - b.id;
-    });
-    grid.innerHTML = '';
-    values.slice(0, state.limit).forEach(function (item) {
-      var image = item.images[0];
-      var source = image.source;
-      var article = document.createElement('article');
-      article.className = 'atlas-card';
-      var visual = image.src
-        ? '<img src="' + escapeText(image.src) + '" alt="' + escapeText(image.alt) + '" loading="lazy" decoding="async">'
-        : schematicVisual(image, true);
-      article.innerHTML =
-        '<a class="atlas-card__main" href="' + caseHref(item.slug) + '">'
-        + '<div class="atlas-card__image">' + visual
-        + '<span class="atlas-card__domain">' + escapeText(item.curriculumDomain) + '</span>'
-        + (source.pediatricImage === false
-          ? '<span class="atlas-card__age-note">成人参考画像</span>'
-          : source.pediatricImage !== true ? '<span class="atlas-card__age-note">小児画像未確認</span>' : '')
-        + '</div>'
-        + '<div class="atlas-card__body"><div class="atlas-card__title-row"><p class="case-no">'
-        + String(item.id).padStart(2, '0') + '</p><span>' + escapeText(image.modality) + ' / ' + escapeText(item.category) + '</span></div>'
-        + '<h2>' + escapeText(item.title) + '</h2>'
-        + '<p class="atlas-card__finding">' + escapeText(item.keyFindings[0]) + '</p>'
-        + '<dl class="atlas-card__meta"><div><dt>年齢</dt><dd>' + escapeText(item.ageGroup) + '</dd></div>'
-        + '<div><dt>難易度</dt><dd>' + item.difficulty + '/3</dd></div><div><dt>頻出度</dt><dd>' + item.frequency + '/5</dd></div>'
-        + '<div><dt>典型度</dt><dd>' + item.typicality + '/5</dd></div></dl>'
-        + '<p class="atlas-card__source"><span>' + escapeText(source.organization || source.copyrightHolder || '原典') + '</span>'
-        + '<span>' + escapeText(source.licenseName) + '</span></p></div></a>'
-        + '<div class="card-actions"><div class="mastery-seg" aria-label="習得状況">'
-        + '<button class="card-action" type="button" data-mastery="" aria-label="未学習にする">未</button>'
-        + '<button class="card-action" type="button" data-mastery="shaky" aria-label="あやしいにする">あやしい</button>'
-        + '<button class="card-action" type="button" data-mastery="known" aria-label="覚えたにする">覚えた</button></div>'
-        + '<button class="card-action card-action--save" type="button" data-action="favorite" aria-label="お気に入りにする">保存</button></div>';
-      article.querySelectorAll('[data-mastery]').forEach(function (button) {
-        var activeMastery = getMastery(item.slug) === button.dataset.mastery;
-        button.classList.toggle('is-active', activeMastery);
-        button.setAttribute('aria-pressed', String(activeMastery));
-        button.addEventListener('click', function (event) {
-          event.preventDefault();
-          event.stopPropagation();
-          if (!setMastery(item.slug, button.dataset.mastery)) {
-            showStorageWarning();
-            return;
-          }
-          article.querySelectorAll('[data-mastery]').forEach(function (entry) {
-            entry.classList.toggle('is-active', entry === button);
-            entry.setAttribute('aria-pressed', String(entry === button));
-          });
-          updateLearningProgress();
-          if (button.dataset.mastery === 'known' && !state.showKnown && !state.study) {
-            article.classList.add('is-mastered-away');
-            window.setTimeout(renderIndex, 220);
-          } else {
-            renderIndex();
-          }
+    var root = document.getElementById('flashcard-root');
+    var item = state.cases.find(function (entry) { return entry.slug === state.queue[0]; });
+    updateLearningProgress();
+    if (!item) {
+      root.innerHTML = '<div class="flash-complete"><span>✓</span><h2 tabindex="-1" data-complete-heading>今日はここまで。</h2>'
+        + '<p>覚えていない画像はありません。</p>'
+        + '<button type="button" data-restart-review>覚えた画像を最初から復習する</button></div>';
+      root.querySelector('[data-restart-review]').addEventListener('click', function () {
+        var restored = state.cases.every(function (entry) {
+          return setMastery(entry.slug, '');
         });
-      });
-      var favorite = article.querySelector('[data-action="favorite"]');
-      favorite.classList.toggle('is-active', readState('favorite:' + item.slug) === '1');
-      favorite.setAttribute('aria-pressed', String(favorite.classList.contains('is-active')));
-      favorite.textContent = favorite.classList.contains('is-active') ? '保存済み' : '保存';
-      favorite.addEventListener('click', function (event) {
-        event.preventDefault();
-        event.stopPropagation();
-        var active = !favorite.classList.contains('is-active');
-        if (!writeState('favorite:' + item.slug, active ? '1' : '0')) {
+        if (!restored) {
           showStorageWarning();
           return;
         }
-        favorite.classList.toggle('is-active', active);
-        favorite.setAttribute('aria-pressed', String(active));
-        favorite.textContent = active ? '保存済み' : '保存';
-        if (state.study === 'favorite') renderIndex();
+        createReviewQueue();
+        renderIndex();
+        root.querySelector('[data-reveal-card]')?.focus();
       });
-      grid.appendChild(article);
-    });
-    document.getElementById('result-count').textContent = values.length + '件';
-    document.getElementById('visible-count').textContent = Math.min(values.length, state.limit);
-    document.getElementById('filtered-total').textContent = values.length;
-    document.getElementById('load-more-row').hidden = values.length <= state.limit;
-    var contexts = [];
-    if (state.domain) contexts.push(state.domain);
-    if (state.category) contexts.push(state.category);
-    if (state.modality) contexts.push(state.modality);
-    if (state.availability) contexts.push(state.availability === 'local' ? '実画像' : '原典参照');
-    if (state.study) contexts.push({ learned: '覚えた', shaky: 'あやしい', unlearned: '未学習', favorite: '保存済み' }[state.study]);
-    if (state.query) contexts.push('「' + state.query + '」');
-    document.getElementById('result-context').textContent = contexts.length
-      ? contexts.join('・') + 'で絞り込み中'
-      : state.showKnown ? 'あやしい → 未学習 → 覚えた の順で表示'
-        : '集中対象だけを表示 · 覚えた症例は一旦非表示';
-    document.getElementById('empty-state').hidden = values.length !== 0;
-    var focusButton = document.getElementById('focus-toggle');
-    if (focusButton) {
-      var knownCount = state.cases.filter(function (item) {
-        return getMastery(item.slug) === 'known';
-      }).length;
-      focusButton.textContent = state.showKnown ? '覚えた症例を隠す' : '覚えた' + knownCount + '件を表示';
-      focusButton.setAttribute('aria-pressed', String(state.showKnown));
+      return;
     }
+    var image = item.images[0];
+    var source = image.source;
+    var visual = image.src
+      ? '<img src="' + escapeText(image.src) + '" alt="診断を考えるための症例画像" decoding="async">'
+      : schematicVisual(image, false);
+    root.innerHTML = '<article class="flash-card' + (state.revealed ? ' is-revealed' : '') + '">'
+      + '<div class="flash-card__visual">' + visual
+      + '<span class="flash-card__counter">' + String(state.cases.length - state.queue.length + 1)
+      + ' / ' + state.cases.length + '</span></div>'
+      + '<div class="flash-card__content">'
+      + '<p class="flash-card__prompt">' + (state.revealed ? 'ANSWER' : 'この画像の診断は？') + '</p>'
+      + '<div class="flash-card__answer"' + (state.revealed ? '' : ' hidden') + '>'
+      + '<h2>' + escapeText(item.title) + '</h2>'
+      + '<p>' + escapeText(item.keyFindings[0]) + '</p>'
+      + '<small>' + escapeText(image.modality) + ' · '
+      + escapeText(source.organization || source.copyrightHolder || '原典') + '</small></div>'
+      + (state.revealed
+        ? '<div class="flash-card__actions"><button type="button" data-review-again>もう一度</button>'
+          + '<button type="button" data-mark-known>覚えた</button></div>'
+          + '<a class="flash-card__detail" href="' + caseHref(item.slug) + '">解答・解説と出典を見る</a>'
+        : '<button class="flash-card__reveal" type="button" data-reveal-card>答えを見る</button>')
+      + '</div></article>';
+    var reveal = root.querySelector('[data-reveal-card]');
+    if (reveal) reveal.addEventListener('click', function () {
+      state.revealed = true;
+      renderIndex();
+      root.querySelector('[data-review-again]')?.focus();
+    });
+    var again = root.querySelector('[data-review-again]');
+    if (again) again.addEventListener('click', function () {
+      if (!setMastery(item.slug, 'shaky')) {
+        showStorageWarning();
+        return;
+      }
+      state.queue.push(state.queue.shift());
+      state.revealed = false;
+      renderIndex();
+      root.querySelector('[data-reveal-card]')?.focus();
+    });
+    var known = root.querySelector('[data-mark-known]');
+    if (known) known.addEventListener('click', function () {
+      if (!setMastery(item.slug, 'known')) {
+        showStorageWarning();
+        return;
+      }
+      state.queue.shift();
+      state.revealed = false;
+      renderIndex();
+      var nextControl = root.querySelector('[data-reveal-card], [data-complete-heading]');
+      if (nextControl) nextControl.focus();
+    });
   }
 
   function updateLearningProgress() {
@@ -271,129 +212,25 @@
     }).length;
     document.getElementById('learned-count').textContent = learned;
     document.getElementById('shaky-count').textContent = shaky;
-    document.getElementById('learning-total').textContent = state.cases.length;
+    document.getElementById('remaining-count').textContent = state.queue.length;
     document.getElementById('learning-progress-bar').style.width =
       (state.cases.length ? learned / state.cases.length * 100 : 0) + '%';
   }
 
-  function renderDomainRail() {
-    var rail = document.getElementById('domain-rail');
-    rail.innerHTML = '<button type="button" class="domain-chip is-active" data-domain="">'
-      + '<span>00</span><strong>すべて</strong><small>' + state.cases.length + '</small></button>';
-    state.coverage.domains.forEach(function (domain) {
-      var button = document.createElement('button');
-      button.type = 'button';
-      button.className = 'domain-chip domain-chip--' + domain.status;
-      button.dataset.domain = domain.name;
-      button.disabled = domain.currentCaseCount === 0;
-      button.title = domain.coveredTargetCount + '/' + domain.targetCount + '項目 · ' + domain.currentCaseCount + '症例';
-      button.innerHTML = '<span>' + String(domain.id).padStart(2, '0') + '</span><strong>'
-        + escapeText(domain.name) + '</strong><small>' + domain.coveredTargetCount + '/' + domain.targetCount + '</small>';
-      rail.appendChild(button);
-    });
-    rail.addEventListener('click', function (event) {
-      var button = event.target.closest('[data-domain]');
-      if (!button || button.disabled) return;
-      state.domain = button.dataset.domain;
-      state.limit = 24;
-      rail.querySelectorAll('[data-domain]').forEach(function (entry) {
-        entry.classList.toggle('is-active', entry === button);
-      });
-      renderIndex();
-      document.getElementById('atlas-grid').scrollIntoView({ block: 'start' });
+  function createReviewQueue() {
+    state.queue = state.cases.filter(function (item) {
+      return getMastery(item.slug) !== 'known';
+    }).sort(function (a, b) {
+      var aShaky = getMastery(a.slug) === 'shaky' ? 0 : 1;
+      var bShaky = getMastery(b.slug) === 'shaky' ? 0 : 1;
+      return aShaky - bShaky || b.frequency - a.frequency || a.id - b.id;
+    }).map(function (item) {
+      return item.slug;
     });
   }
 
   function setupIndex() {
-    var categories = Array.from(new Set(state.cases.map(function (item) { return item.category; }))).sort();
-    var modalities = Array.from(new Set(state.cases.flatMap(function (item) {
-      return item.images.map(function (image) { return image.modality; });
-    }))).sort();
-    var category = document.getElementById('category-filter');
-    var modality = document.getElementById('modality-filter');
-    var availability = document.getElementById('availability-filter');
-    var study = document.getElementById('study-filter');
-    var sort = document.getElementById('sort-order');
-    var focus = document.getElementById('focus-toggle');
-    state.showKnown = readState('show-known') === '1';
-    categories.forEach(function (value) { category.add(new Option(value, value)); });
-    modalities.forEach(function (value) { modality.add(new Option(value, value)); });
-    var allImages = state.cases.flatMap(function (item) { return item.images; });
-    document.getElementById('domain-count').textContent = state.coverage.domains.filter(function (domain) {
-      return domain.coveredTargetCount > 0;
-    }).length;
-    var coveredTargets = state.coverage.domains.reduce(function (sum, domain) {
-      return sum + domain.coveredTargetCount;
-    }, 0);
-    var totalTargets = state.coverage.domains.reduce(function (sum, domain) {
-      return sum + domain.targetCount;
-    }, 0);
-    document.getElementById('target-progress').textContent = coveredTargets + '/' + totalTargets + '項目';
-    document.getElementById('case-count').textContent = state.cases.length;
-    document.getElementById('image-count').textContent = allImages.filter(function (image) { return image.src; }).length;
-    document.getElementById('link-count').textContent = allImages.filter(function (image) { return !image.src; }).length;
-    renderDomainRail();
-    updateLearningProgress();
-    function refilter() {
-      state.limit = 24;
-      renderIndex();
-    }
-    document.getElementById('atlas-search').addEventListener('input', function (event) {
-      state.query = event.target.value.trim().toLowerCase(); refilter();
-    });
-    category.addEventListener('change', function (event) { state.category = event.target.value; refilter(); });
-    modality.addEventListener('change', function (event) { state.modality = event.target.value; refilter(); });
-    availability.addEventListener('change', function (event) { state.availability = event.target.value; refilter(); });
-    study.addEventListener('change', function (event) { state.study = event.target.value; refilter(); });
-    sort.addEventListener('change', function (event) { state.sort = event.target.value; refilter(); });
-    function renderFocusButton() {
-      var known = state.cases.filter(function (item) { return getMastery(item.slug) === 'known'; }).length;
-      focus.textContent = state.showKnown ? '覚えた症例を隠す' : '覚えた' + known + '件を表示';
-      focus.setAttribute('aria-pressed', String(state.showKnown));
-    }
-    focus.addEventListener('click', function () {
-      var next = !state.showKnown;
-      if (!writeState('show-known', next ? '1' : '0')) {
-        showStorageWarning();
-        return;
-      }
-      state.showKnown = next;
-      state.limit = 24;
-      renderFocusButton();
-      renderIndex();
-    });
-    document.getElementById('load-more').addEventListener('click', function () {
-      state.limit += 24;
-      renderIndex();
-    });
-    document.getElementById('reset-filters').addEventListener('click', function () {
-      state.query = ''; state.category = ''; state.modality = ''; state.domain = ''; state.study = '';
-      state.availability = ''; state.limit = 24;
-      document.getElementById('atlas-search').value = '';
-      category.value = ''; modality.value = ''; availability.value = ''; study.value = '';
-      document.querySelectorAll('.domain-chip').forEach(function (button, index) {
-        button.classList.toggle('is-active', index === 0);
-      });
-      renderIndex();
-    });
-    renderFocusButton();
-    var quiz = document.getElementById('quiz-toggle');
-    state.quiz = readState('quiz') === '1';
-    document.body.classList.toggle('quiz-mode', state.quiz);
-    quiz.setAttribute('aria-pressed', String(state.quiz));
-    quiz.textContent = state.quiz ? '診断を表示' : '診断を隠す';
-    quiz.addEventListener('click', function () {
-      var nextQuiz = !state.quiz;
-      if (!writeState('quiz', nextQuiz ? '1' : '0')) {
-        showStorageWarning();
-        return;
-      }
-      state.quiz = nextQuiz;
-      document.body.classList.toggle('quiz-mode', state.quiz);
-      quiz.setAttribute('aria-pressed', String(state.quiz));
-      quiz.textContent = state.quiz ? '診断を表示' : '診断を隠す';
-      renderIndex();
-    });
+    createReviewQueue();
     renderIndex();
   }
 
