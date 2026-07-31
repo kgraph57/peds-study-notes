@@ -74,10 +74,28 @@ test('既存の学習状態・メモ保存機能を維持する', () => {
   assert.match(app, /topic-infographic/);
 });
 
+test('学習ノートは覚えた項目を既定で隠し、必要な時だけ再表示できる', () => {
+  const app = fs.readFileSync(path.join(root, 'app.js'), 'utf8');
+  assert.match(app, /show-known/);
+  assert.match(app, /覚えた項目を表示/);
+  assert.match(app, /it\.h2\.hidden\s*=/);
+  assert.match(app, /member\.hidden\s*=/);
+  assert.match(app, /statusRank/);
+  assert.match(app, /aria-pressed/);
+});
+
 test('Vercel設定が有効なJSONである', () => {
   assert.doesNotThrow(() => JSON.parse(fs.readFileSync(path.join(root, 'vercel.json'), 'utf8')));
 });
 
 test('トップページのタイトルがVisual Study Notesである', () => {
   assert.match(fs.readFileSync(path.join(root, 'index.html'), 'utf8'), /<title>小児科 Visual Study Notes<\/title>/);
+});
+
+test('各シートの上部ナビと目次はスクロールに追従しない', () => {
+  const styles = fs.readFileSync(path.join(root, 'style.css'), 'utf8');
+  assert.match(styles, /\.topnav\{position:static/);
+  assert.match(styles, /nav#TOC\{position:static/);
+  assert.doesNotMatch(styles, /\.topnav\{position:sticky/);
+  assert.doesNotMatch(styles, /nav#TOC\{position:sticky/);
 });

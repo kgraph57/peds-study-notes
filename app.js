@@ -27,6 +27,7 @@
   function buildSheet(){
     var sl = slug(location.pathname);
     var pfx = NS+':sheet:'+sl+':';
+    var showKnown = get(pfx+'show-known') === '1';
     var h1 = document.querySelector('h1#神経筋-毎日確認シート, h1[id]:not(.title)') || document.querySelector('h1:not(.title)');
     var title = h1 ? h1.textContent.trim() : sl;
 
@@ -47,9 +48,11 @@
       '<div class="rev-progress__row">'
         +'<span class="rev-progress__label">習得状況</span>'
         +'<span class="rev-progress__nums" data-nums></span>'
+        +'<button class="rev-progress__focus" type="button" data-show-known aria-pressed="false"></button>'
         +'<button class="rev-progress__reset" type="button" data-reset>リセット</button>'
       +'</div>'
-      +'<div class="rev-progress__track"><span class="rev-progress__fill" data-fill></span></div>';
+      +'<div class="rev-progress__track"><span class="rev-progress__fill" data-fill></span></div>'
+      +'<p class="rev-progress__focus-message" data-focus-message></p>';
     var nav = document.querySelector('.topnav');
     if(nav && nav.parentNode) nav.parentNode.insertBefore(bar, nav.nextSibling);
     else document.body.insertBefore(bar, document.body.firstChild);
@@ -64,12 +67,25 @@
         var dim = (s==='known');
         it.h2.classList.toggle('rev-dim-h', dim);
         (it.members||[]).forEach(function(el){ el.classList.toggle('rev-dim', dim); });
+        var focusHidden = dim && !showKnown;
+        it.h2.hidden = focusHidden;
+        (it.members||[]).forEach(function(member){ member.hidden = focusHidden; });
+        if(it.memoWrap) it.memoWrap.hidden = focusHidden || !it.memoVisible;
       });
       var n = items.length || 1;
       bar.querySelector('[data-nums]').innerHTML =
         '<b class="is-known">覚えた '+known+'</b> ・ <b class="is-shaky">あやしい '+shaky+'</b>'
         +' ・ <b class="is-todo">未 '+todo+'</b> ／ 全'+items.length;
       bar.querySelector('[data-fill]').style.width = Math.round(known/n*100)+'%';
+      var showKnownButton=bar.querySelector('[data-show-known]');
+      showKnownButton.textContent=showKnown
+        ? '覚えた項目を隠す'
+        : '覚えた項目を表示（'+known+'）';
+      showKnownButton.setAttribute('aria-pressed',String(showKnown));
+      bar.classList.toggle('is-complete', known===items.length && items.length>0);
+      bar.querySelector('[data-focus-message]').textContent=known===items.length&&items.length>0
+        ? 'このシートは完了しました。覚えた項目は必要なときだけ戻せます。'
+        : 'いま集中する項目 '+(items.length-known)+'件';
       set(pfx+'count', String(items.length));
       set(pfx+'known', String(known));
       set(pfx+'shaky', String(shaky));
@@ -88,10 +104,15 @@
         b.type='button';
         b.className='rev-seg__btn '+st.cls+(cur===st.v?' is-active':'');
         b.textContent=st.label;
+        b.setAttribute('aria-pressed',String(cur===st.v));
         b.addEventListener('click', function(){
           set(it.stateKey, st.v);
-          seg.querySelectorAll('.rev-seg__btn').forEach(function(x){ x.classList.remove('is-active'); });
+          seg.querySelectorAll('.rev-seg__btn').forEach(function(x){
+            x.classList.remove('is-active');
+            x.setAttribute('aria-pressed','false');
+          });
           b.classList.add('is-active');
+          b.setAttribute('aria-pressed','true');
           render();
         });
         seg.appendChild(b);
@@ -106,6 +127,8 @@
       var memoWrap=document.createElement('div');
       memoWrap.className='rev-memo';
       memoWrap.hidden = !memoVal;
+      it.memoWrap = memoWrap;
+      it.memoVisible = !memoWrap.hidden;
       var ta=document.createElement('textarea');
       ta.placeholder='自分用メモ（語呂・間違えた点・引っかけ）…';
       ta.value=memoVal;
@@ -115,7 +138,8 @@
       });
       memoWrap.appendChild(ta);
       memoBtn.addEventListener('click', function(){
-        memoWrap.hidden=!memoWrap.hidden;
+        it.memoVisible=!it.memoVisible;
+        memoWrap.hidden=!it.memoVisible;
         if(!memoWrap.hidden) ta.focus();
       });
 
@@ -139,6 +163,11 @@
       if(!confirm('このシートの「覚えた／あやしい」とメモをすべて消しますか？')) return;
       items.forEach(function(it){ set(it.stateKey,''); set(it.memoKey,''); });
       location.reload();
+    });
+    bar.querySelector('[data-show-known]').addEventListener('click', function(){
+      showKnown=!showKnown;
+      set(pfx+'show-known',showKnown?'1':'');
+      render();
     });
 
     render();
@@ -171,26 +200,50 @@
       +'<div class="filter-chips" role="group" aria-label="習得状況で絞り込み">'
       +'<button type="button" data-filter="all" class="is-active">すべて</button>'
       +'<button type="button" data-filter="todo">未学習</button>'
-      +'<button type="button" data-filter="shaky">あやしい</button></div>';
+      +'<button type="button" data-filter="shaky">あやしい</button>'
+      +'<button type="button" data-show-known aria-pressed="false">完了した領域を表示</button></div>';
     cards.parentNode.insertBefore(tools,cards);
     var query=tools.querySelector('input'), filter='all';
+    var showKnown=get(NS+':index:show-known')==='1';
+    function statusOf(card){
+      var sl=slug(card.getAttribute('href')||''), pfx=NS+':sheet:'+sl+':';
+      var count=parseInt(get(pfx+'count')||'0',10), known=parseInt(get(pfx+'known')||'0',10);
+      var shaky=parseInt(get(pfx+'shaky')||'0',10);
+      return count>0&&known===count?'known':shaky>0?'shaky':'todo';
+    }
+    function statusRank(status){ return status==='shaky'?0:status==='todo'?1:2; }
     function apply(){
-      Array.prototype.forEach.call(cards.querySelectorAll('.card'),function(card){
-        var sl=slug(card.getAttribute('href')||''), pfx=NS+':sheet:'+sl+':';
-        var count=parseInt(get(pfx+'count')||'0',10), known=parseInt(get(pfx+'known')||'0',10);
-        var shaky=parseInt(get(pfx+'shaky')||'0',10), text=card.textContent.toLowerCase();
-        var status=count===0||known<count-shaky?'todo':(shaky?'shaky':'known');
-        card.hidden=!(text.indexOf(query.value.trim().toLowerCase())>=0 && (filter==='all'||status===filter));
+      var allCards=Array.prototype.slice.call(cards.querySelectorAll('.card'));
+      allCards.sort(function(a,b){ return statusRank(statusOf(a))-statusRank(statusOf(b)); });
+      allCards.forEach(function(card){
+        var status=statusOf(card), text=card.textContent.toLowerCase();
+        var matches=text.indexOf(query.value.trim().toLowerCase())>=0 && (filter==='all'||status===filter);
+        card.hidden=!matches||(status==='known'&&!showKnown);
+        cards.appendChild(card);
       });
+      var knownCount=allCards.filter(function(card){return statusOf(card)==='known';}).length;
+      var toggle=tools.querySelector('[data-show-known]');
+      toggle.textContent=showKnown?'完了した領域を隠す':'完了した領域を表示（'+knownCount+'）';
+      toggle.setAttribute('aria-pressed',String(showKnown));
     }
     query.addEventListener('input',apply);
     tools.querySelectorAll('[data-filter]').forEach(function(button){
+      button.setAttribute('aria-pressed',String(button.classList.contains('is-active')));
       button.addEventListener('click',function(){
         filter=button.getAttribute('data-filter');
-        tools.querySelectorAll('[data-filter]').forEach(function(x){x.classList.toggle('is-active',x===button);});
+        tools.querySelectorAll('[data-filter]').forEach(function(x){
+          x.classList.toggle('is-active',x===button);
+          x.setAttribute('aria-pressed',String(x===button));
+        });
         apply();
       });
     });
+    tools.querySelector('[data-show-known]').addEventListener('click',function(){
+      showKnown=!showKnown;
+      set(NS+':index:show-known',showKnown?'1':'');
+      apply();
+    });
+    apply();
   }
 
   function pageKey(){

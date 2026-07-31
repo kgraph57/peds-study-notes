@@ -1,0 +1,1622 @@
+{
+  "title": "小児科画像アトラス網羅計画",
+  "scope": "日本小児科学会「小児科医の到達目標」改訂第8版の25分野について、専門医試験で画像・図表認識が有用な項目を管理する。",
+  "source": {
+    "title": "小児科医の到達目標―小児科専門医の教育目標― 改訂第8版",
+    "organization": "日本小児科学会",
+    "url": "https://www.jpeds.or.jp/uploads/files/mokuhyo_8.pdf",
+    "effectiveFrom": "2025-04-01",
+    "accessedAt": "2026-07-30"
+  },
+  "domains": [
+    {
+      "id": 1,
+      "name": "小児保健",
+      "targetVisuals": [
+        "母子健康手帳と健診時期",
+        "予防接種スケジュール",
+        "乳幼児身体診察",
+        "被虐待を疑う損傷パターン"
+      ],
+      "targetCount": 4,
+      "coveredTargets": [],
+      "coveredTargetCount": 0,
+      "missingTargets": [
+        "母子健康手帳と健診時期",
+        "予防接種スケジュール",
+        "乳幼児身体診察",
+        "被虐待を疑う損傷パターン"
+      ],
+      "currentCases": [
+        {
+          "id": 101,
+          "slug": "maternal-child-health-record",
+          "title": "母子健康手帳と健診時期",
+          "imageCount": 1
+        },
+        {
+          "id": 102,
+          "slug": "child-immunization-schedule",
+          "title": "予防接種スケジュール",
+          "imageCount": 1
+        },
+        {
+          "id": 103,
+          "slug": "infant-physical-examination",
+          "title": "乳幼児身体診察",
+          "imageCount": 1
+        },
+        {
+          "id": 104,
+          "slug": "non-accidental-injury-patterns",
+          "title": "被虐待を疑う損傷パターン",
+          "imageCount": 1
+        }
+      ],
+      "currentCaseCount": 4,
+      "status": "not-started"
+    },
+    {
+      "id": 2,
+      "name": "成長・発達",
+      "targetVisuals": [
+        "標準成長曲線",
+        "頭囲曲線",
+        "骨年齢",
+        "乳幼児発達マイルストーン",
+        "低身長パターン"
+      ],
+      "targetCount": 5,
+      "coveredTargets": [],
+      "coveredTargetCount": 0,
+      "missingTargets": [
+        "標準成長曲線",
+        "頭囲曲線",
+        "骨年齢",
+        "乳幼児発達マイルストーン",
+        "低身長パターン"
+      ],
+      "currentCases": [
+        {
+          "id": 105,
+          "slug": "standard-growth-chart",
+          "title": "標準成長曲線",
+          "imageCount": 1
+        },
+        {
+          "id": 106,
+          "slug": "head-circumference-chart",
+          "title": "頭囲曲線",
+          "imageCount": 1
+        },
+        {
+          "id": 107,
+          "slug": "bone-age-hand-xray",
+          "title": "骨年齢",
+          "imageCount": 1
+        },
+        {
+          "id": 108,
+          "slug": "developmental-milestones",
+          "title": "乳幼児発達マイルストーン",
+          "imageCount": 1
+        },
+        {
+          "id": 109,
+          "slug": "short-stature-growth-pattern",
+          "title": "低身長パターン",
+          "imageCount": 1
+        }
+      ],
+      "currentCaseCount": 5,
+      "status": "not-started"
+    },
+    {
+      "id": 3,
+      "name": "栄養",
+      "targetVisuals": [
+        "栄養評価曲線",
+        "蛋白エネルギー栄養障害",
+        "ビタミン欠乏所見",
+        "経腸栄養デバイス"
+      ],
+      "targetCount": 4,
+      "coveredTargets": [],
+      "coveredTargetCount": 0,
+      "missingTargets": [
+        "栄養評価曲線",
+        "蛋白エネルギー栄養障害",
+        "ビタミン欠乏所見",
+        "経腸栄養デバイス"
+      ],
+      "currentCases": [
+        {
+          "id": 110,
+          "slug": "pediatric-nutritional-assessment",
+          "title": "栄養評価曲線",
+          "imageCount": 1
+        },
+        {
+          "id": 111,
+          "slug": "protein-energy-malnutrition",
+          "title": "蛋白エネルギー栄養障害",
+          "imageCount": 1
+        },
+        {
+          "id": 112,
+          "slug": "vitamin-deficiency-findings",
+          "title": "ビタミン欠乏所見",
+          "imageCount": 1
+        },
+        {
+          "id": 113,
+          "slug": "enteral-feeding-devices",
+          "title": "経腸栄養デバイス",
+          "imageCount": 1
+        }
+      ],
+      "currentCaseCount": 4,
+      "status": "not-started"
+    },
+    {
+      "id": 4,
+      "name": "水・電解質",
+      "targetVisuals": [
+        "脱水所見",
+        "酸塩基平衡図",
+        "低Na・高Na血症",
+        "低K・高K血症心電図"
+      ],
+      "targetCount": 4,
+      "coveredTargets": [],
+      "coveredTargetCount": 0,
+      "missingTargets": [
+        "脱水所見",
+        "酸塩基平衡図",
+        "低Na・高Na血症",
+        "低K・高K血症心電図"
+      ],
+      "currentCases": [
+        {
+          "id": 114,
+          "slug": "pediatric-dehydration-signs",
+          "title": "脱水所見",
+          "imageCount": 1
+        },
+        {
+          "id": 115,
+          "slug": "acid-base-nomogram",
+          "title": "酸塩基平衡図",
+          "imageCount": 1
+        },
+        {
+          "id": 116,
+          "slug": "sodium-disorder-patterns",
+          "title": "低Na・高Na血症",
+          "imageCount": 1
+        },
+        {
+          "id": 117,
+          "slug": "potassium-ecg-patterns",
+          "title": "低K・高K血症心電図",
+          "imageCount": 1
+        }
+      ],
+      "currentCaseCount": 4,
+      "status": "not-started"
+    },
+    {
+      "id": 5,
+      "name": "新生児",
+      "targetVisuals": [
+        "RDS",
+        "TTN",
+        "胎便吸引症候群",
+        "横隔膜ヘルニア",
+        "NEC",
+        "新生児黄疸",
+        "頭蓋内出血",
+        "低酸素性虚血性脳症"
+      ],
+      "targetCount": 8,
+      "coveredTargets": [
+        "RDS",
+        "TTN",
+        "胎便吸引症候群",
+        "横隔膜ヘルニア",
+        "NEC"
+      ],
+      "coveredTargetCount": 5,
+      "missingTargets": [
+        "新生児黄疸",
+        "頭蓋内出血",
+        "低酸素性虚血性脳症"
+      ],
+      "currentCases": [
+        {
+          "id": 4,
+          "slug": "neonatal-rds",
+          "title": "新生児呼吸窮迫症候群",
+          "imageCount": 1
+        },
+        {
+          "id": 5,
+          "slug": "meconium-aspiration",
+          "title": "胎便吸引症候群",
+          "imageCount": 1
+        },
+        {
+          "id": 6,
+          "slug": "transient-tachypnea-newborn",
+          "title": "新生児一過性多呼吸",
+          "imageCount": 1
+        },
+        {
+          "id": 7,
+          "slug": "congenital-diaphragmatic-hernia",
+          "title": "先天性横隔膜ヘルニア",
+          "imageCount": 1
+        },
+        {
+          "id": 17,
+          "slug": "nec-pneumatosis",
+          "title": "壊死性腸炎",
+          "imageCount": 1
+        },
+        {
+          "id": 118,
+          "slug": "neonatal-jaundice-pattern",
+          "title": "新生児黄疸",
+          "imageCount": 1
+        },
+        {
+          "id": 119,
+          "slug": "neonatal-intraventricular-hemorrhage",
+          "title": "新生児頭蓋内出血",
+          "imageCount": 1
+        },
+        {
+          "id": 120,
+          "slug": "hypoxic-ischemic-encephalopathy-mri",
+          "title": "低酸素性虚血性脳症",
+          "imageCount": 1
+        }
+      ],
+      "currentCaseCount": 8,
+      "status": "in-progress"
+    },
+    {
+      "id": 6,
+      "name": "先天異常・遺伝",
+      "targetVisuals": [
+        "Down症候群核型",
+        "Turner症候群核型",
+        "Klinefelter症候群核型",
+        "染色体微細欠失",
+        "主要奇形症候群の身体所見"
+      ],
+      "targetCount": 5,
+      "coveredTargets": [
+        "Down症候群核型",
+        "Turner症候群核型",
+        "Klinefelter症候群核型",
+        "主要奇形症候群の身体所見"
+      ],
+      "coveredTargetCount": 4,
+      "missingTargets": [
+        "染色体微細欠失"
+      ],
+      "currentCases": [
+        {
+          "id": 39,
+          "slug": "down-syndrome-karyotype",
+          "title": "Down症候群",
+          "imageCount": 1
+        },
+        {
+          "id": 40,
+          "slug": "turner-syndrome-karyotype",
+          "title": "Turner症候群",
+          "imageCount": 1
+        },
+        {
+          "id": 41,
+          "slug": "klinefelter-syndrome-karyotype",
+          "title": "Klinefelter症候群",
+          "imageCount": 1
+        },
+        {
+          "id": 42,
+          "slug": "osteogenesis-imperfecta-xray",
+          "title": "骨形成不全症",
+          "imageCount": 1
+        },
+        {
+          "id": 43,
+          "slug": "neurofibromatosis-type-1-skin",
+          "title": "神経線維腫症1型",
+          "imageCount": 1
+        },
+        {
+          "id": 121,
+          "slug": "chromosomal-microdeletion",
+          "title": "染色体微細欠失",
+          "imageCount": 1
+        }
+      ],
+      "currentCaseCount": 6,
+      "status": "in-progress"
+    },
+    {
+      "id": 7,
+      "name": "先天代謝異常，代謝性疾患",
+      "targetVisuals": [
+        "くる病",
+        "ムコ多糖症骨格",
+        "有機酸代謝異常MRI",
+        "Wilson病角膜所見",
+        "ライソゾーム病の末梢血・骨髄像"
+      ],
+      "targetCount": 5,
+      "coveredTargets": [
+        "くる病"
+      ],
+      "coveredTargetCount": 1,
+      "missingTargets": [
+        "ムコ多糖症骨格",
+        "有機酸代謝異常MRI",
+        "Wilson病角膜所見",
+        "ライソゾーム病の末梢血・骨髄像"
+      ],
+      "currentCases": [
+        {
+          "id": 19,
+          "slug": "rickets-metaphysis",
+          "title": "くる病",
+          "imageCount": 1
+        },
+        {
+          "id": 122,
+          "slug": "mucopolysaccharidosis-skeletal-survey",
+          "title": "ムコ多糖症骨格",
+          "imageCount": 1
+        },
+        {
+          "id": 123,
+          "slug": "organic-acidemia-brain-mri",
+          "title": "有機酸代謝異常MRI",
+          "imageCount": 1
+        },
+        {
+          "id": 124,
+          "slug": "wilson-kayser-fleischer-ring",
+          "title": "Wilson病角膜所見",
+          "imageCount": 1
+        },
+        {
+          "id": 125,
+          "slug": "lysosomal-storage-smear",
+          "title": "ライソゾーム病の末梢血・骨髄像",
+          "imageCount": 1
+        }
+      ],
+      "currentCaseCount": 5,
+      "status": "in-progress"
+    },
+    {
+      "id": 8,
+      "name": "内分泌",
+      "targetVisuals": [
+        "先天性甲状腺機能低下症",
+        "先天性副腎過形成",
+        "糖尿病性ケトアシドーシス",
+        "下垂体MRI",
+        "性分化疾患の画像評価"
+      ],
+      "targetCount": 5,
+      "coveredTargets": [],
+      "coveredTargetCount": 0,
+      "missingTargets": [
+        "先天性甲状腺機能低下症",
+        "先天性副腎過形成",
+        "糖尿病性ケトアシドーシス",
+        "下垂体MRI",
+        "性分化疾患の画像評価"
+      ],
+      "currentCases": [
+        {
+          "id": 126,
+          "slug": "congenital-hypothyroidism-features",
+          "title": "先天性甲状腺機能低下症",
+          "imageCount": 1
+        },
+        {
+          "id": 127,
+          "slug": "congenital-adrenal-hyperplasia",
+          "title": "先天性副腎過形成",
+          "imageCount": 1
+        },
+        {
+          "id": 128,
+          "slug": "pediatric-dka-flow",
+          "title": "糖尿病性ケトアシドーシス",
+          "imageCount": 1
+        },
+        {
+          "id": 129,
+          "slug": "pituitary-mri",
+          "title": "下垂体MRI",
+          "imageCount": 1
+        },
+        {
+          "id": 130,
+          "slug": "differences-sex-development-imaging",
+          "title": "性分化疾患の画像評価",
+          "imageCount": 1
+        }
+      ],
+      "currentCaseCount": 5,
+      "status": "not-started"
+    },
+    {
+      "id": 9,
+      "name": "生体防御・免疫",
+      "targetVisuals": [
+        "原発性免疫不全の胸腺陰影",
+        "慢性肉芽腫症検査像",
+        "血球貪食像",
+        "補体異常の検査パターン"
+      ],
+      "targetCount": 4,
+      "coveredTargets": [],
+      "coveredTargetCount": 0,
+      "missingTargets": [
+        "原発性免疫不全の胸腺陰影",
+        "慢性肉芽腫症検査像",
+        "血球貪食像",
+        "補体異常の検査パターン"
+      ],
+      "currentCases": [
+        {
+          "id": 131,
+          "slug": "primary-immunodeficiency-thymus",
+          "title": "原発性免疫不全の胸腺陰影",
+          "imageCount": 1
+        },
+        {
+          "id": 132,
+          "slug": "chronic-granulomatous-disease-test",
+          "title": "慢性肉芽腫症検査像",
+          "imageCount": 1
+        },
+        {
+          "id": 133,
+          "slug": "hemophagocytosis-marrow",
+          "title": "血球貪食像",
+          "imageCount": 1
+        },
+        {
+          "id": 134,
+          "slug": "complement-deficiency-pattern",
+          "title": "補体異常の検査パターン",
+          "imageCount": 1
+        }
+      ],
+      "currentCaseCount": 4,
+      "status": "not-started"
+    },
+    {
+      "id": 10,
+      "name": "膠原病・リウマチ性疾患",
+      "targetVisuals": [
+        "IgA血管炎",
+        "川崎病冠動脈エコー",
+        "若年性特発性関節炎",
+        "SLE皮膚・腎病理",
+        "皮膚筋炎"
+      ],
+      "targetCount": 5,
+      "coveredTargets": [
+        "IgA血管炎",
+        "川崎病冠動脈エコー"
+      ],
+      "coveredTargetCount": 2,
+      "missingTargets": [
+        "若年性特発性関節炎",
+        "SLE皮膚・腎病理",
+        "皮膚筋炎"
+      ],
+      "currentCases": [
+        {
+          "id": 20,
+          "slug": "iga-vasculitis-purpura",
+          "title": "IgA血管炎",
+          "imageCount": 1
+        },
+        {
+          "id": 141,
+          "slug": "kawasaki-mucocutaneous-findings",
+          "title": "川崎病の粘膜皮膚所見",
+          "imageCount": 2
+        },
+        {
+          "id": 142,
+          "slug": "juvenile-idiopathic-arthritis-imaging",
+          "title": "若年性特発性関節炎",
+          "imageCount": 1
+        },
+        {
+          "id": 143,
+          "slug": "pediatric-lupus-nephritis-pathology",
+          "title": "小児SLE・ループス腎炎",
+          "imageCount": 1
+        },
+        {
+          "id": 144,
+          "slug": "juvenile-dermatomyositis-rash",
+          "title": "若年性皮膚筋炎",
+          "imageCount": 1
+        }
+      ],
+      "currentCaseCount": 5,
+      "status": "in-progress"
+    },
+    {
+      "id": 11,
+      "name": "アレルギー",
+      "targetVisuals": [
+        "アトピー性皮膚炎",
+        "蕁麻疹",
+        "アナフィラキシー所見",
+        "食物アレルギー誘発症状",
+        "喘息画像鑑別"
+      ],
+      "targetCount": 5,
+      "coveredTargets": [
+        "アトピー性皮膚炎",
+        "蕁麻疹"
+      ],
+      "coveredTargetCount": 2,
+      "missingTargets": [
+        "アナフィラキシー所見",
+        "食物アレルギー誘発症状",
+        "喘息画像鑑別"
+      ],
+      "currentCases": [
+        {
+          "id": 50,
+          "slug": "atopic-dermatitis-child",
+          "title": "アトピー性皮膚炎",
+          "imageCount": 1
+        },
+        {
+          "id": 145,
+          "slug": "acute-urticaria-child",
+          "title": "急性蕁麻疹",
+          "imageCount": 1
+        },
+        {
+          "id": 146,
+          "slug": "anaphylaxis-multisystem-findings",
+          "title": "アナフィラキシーの多臓器所見",
+          "imageCount": 1
+        },
+        {
+          "id": 147,
+          "slug": "food-allergy-provocation-findings",
+          "title": "食物アレルギー誘発症状",
+          "imageCount": 1
+        },
+        {
+          "id": 148,
+          "slug": "pediatric-asthma-chest-imaging",
+          "title": "小児気管支喘息の画像鑑別",
+          "imageCount": 1
+        }
+      ],
+      "currentCaseCount": 5,
+      "status": "in-progress"
+    },
+    {
+      "id": 12,
+      "name": "感染症",
+      "targetVisuals": [
+        "麻疹・風疹・水痘皮疹",
+        "手足口病",
+        "髄膜炎髄液像",
+        "肺炎画像",
+        "骨髄炎MRI",
+        "感染性心内膜炎エコー"
+      ],
+      "targetCount": 6,
+      "coveredTargets": [
+        "麻疹・風疹・水痘皮疹",
+        "手足口病"
+      ],
+      "coveredTargetCount": 2,
+      "missingTargets": [
+        "髄膜炎髄液像",
+        "肺炎画像",
+        "骨髄炎MRI",
+        "感染性心内膜炎エコー"
+      ],
+      "currentCases": [
+        {
+          "id": 46,
+          "slug": "varicella-rash-child",
+          "title": "水痘",
+          "imageCount": 1
+        },
+        {
+          "id": 47,
+          "slug": "hand-foot-mouth-disease-rash",
+          "title": "手足口病",
+          "imageCount": 1
+        },
+        {
+          "id": 48,
+          "slug": "scarlet-fever-rash",
+          "title": "猩紅熱",
+          "imageCount": 1
+        },
+        {
+          "id": 49,
+          "slug": "impetigo-skin-lesion",
+          "title": "伝染性膿痂疹",
+          "imageCount": 1
+        },
+        {
+          "id": 53,
+          "slug": "measles-rash-koplik-spots",
+          "title": "麻疹",
+          "imageCount": 2
+        },
+        {
+          "id": 54,
+          "slug": "rubella-rash-child",
+          "title": "風疹",
+          "imageCount": 1
+        },
+        {
+          "id": 159,
+          "slug": "bacterial-meningitis-csf-gram-stain",
+          "title": "細菌性髄膜炎の髄液像",
+          "imageCount": 1
+        },
+        {
+          "id": 160,
+          "slug": "pediatric-bacterial-pneumonia-imaging",
+          "title": "小児細菌性肺炎",
+          "imageCount": 1
+        },
+        {
+          "id": 161,
+          "slug": "acute-hematogenous-osteomyelitis-mri",
+          "title": "急性血行性骨髄炎",
+          "imageCount": 1
+        },
+        {
+          "id": 162,
+          "slug": "pediatric-infective-endocarditis-echocardiography",
+          "title": "小児感染性心内膜炎",
+          "imageCount": 1
+        }
+      ],
+      "currentCaseCount": 10,
+      "status": "in-progress"
+    },
+    {
+      "id": 13,
+      "name": "呼吸器",
+      "targetVisuals": [
+        "クループ",
+        "急性喉頭蓋炎",
+        "気道異物",
+        "細気管支炎",
+        "肺炎",
+        "気胸",
+        "気管支拡張症",
+        "嚢胞性肺疾患"
+      ],
+      "targetCount": 8,
+      "coveredTargets": [
+        "クループ",
+        "急性喉頭蓋炎",
+        "気道異物",
+        "気胸",
+        "気管支拡張症"
+      ],
+      "coveredTargetCount": 5,
+      "missingTargets": [
+        "細気管支炎",
+        "肺炎",
+        "嚢胞性肺疾患"
+      ],
+      "currentCases": [
+        {
+          "id": 1,
+          "slug": "croup-steeple-sign",
+          "title": "クループ",
+          "imageCount": 1
+        },
+        {
+          "id": 2,
+          "slug": "epiglottitis-thumb-sign",
+          "title": "急性喉頭蓋炎",
+          "imageCount": 1
+        },
+        {
+          "id": 3,
+          "slug": "airway-foreign-body-hyperinflation",
+          "title": "気道異物",
+          "imageCount": 1
+        },
+        {
+          "id": 149,
+          "slug": "bronchiolitis-infant-chest-xray",
+          "title": "細気管支炎",
+          "imageCount": 1
+        },
+        {
+          "id": 150,
+          "slug": "pediatric-round-pneumonia-xray",
+          "title": "小児円形肺炎",
+          "imageCount": 1
+        },
+        {
+          "id": 151,
+          "slug": "pediatric-pneumothorax-cxr",
+          "title": "気胸",
+          "imageCount": 1
+        },
+        {
+          "id": 152,
+          "slug": "pediatric-bronchiectasis-ct",
+          "title": "気管支拡張症",
+          "imageCount": 1
+        },
+        {
+          "id": 153,
+          "slug": "congenital-pulmonary-airway-malformation",
+          "title": "先天性肺気道奇形（CPAM）",
+          "imageCount": 1
+        }
+      ],
+      "currentCaseCount": 8,
+      "status": "in-progress"
+    },
+    {
+      "id": 14,
+      "name": "消化器",
+      "targetVisuals": [
+        "腸重積",
+        "肥厚性幽門狭窄症",
+        "中腸軸捻転",
+        "十二指腸閉鎖",
+        "セリアック病理",
+        "胆道閉鎖",
+        "Hirschsprung病理",
+        "炎症性腸疾患"
+      ],
+      "targetCount": 8,
+      "coveredTargets": [
+        "腸重積",
+        "肥厚性幽門狭窄症",
+        "十二指腸閉鎖",
+        "セリアック病理",
+        "Hirschsprung病理"
+      ],
+      "coveredTargetCount": 5,
+      "missingTargets": [
+        "中腸軸捻転",
+        "胆道閉鎖",
+        "炎症性腸疾患"
+      ],
+      "currentCases": [
+        {
+          "id": 14,
+          "slug": "intussusception-target-sign",
+          "title": "腸重積",
+          "imageCount": 1
+        },
+        {
+          "id": 15,
+          "slug": "hypertrophic-pyloric-stenosis",
+          "title": "肥厚性幽門狭窄症",
+          "imageCount": 1
+        },
+        {
+          "id": 16,
+          "slug": "midgut-volvulus-whirlpool-sign",
+          "title": "中腸軸捻転",
+          "imageCount": 1
+        },
+        {
+          "id": 18,
+          "slug": "duodenal-atresia-double-bubble",
+          "title": "十二指腸閉鎖",
+          "imageCount": 1
+        },
+        {
+          "id": 25,
+          "slug": "celiac-disease-histology",
+          "title": "セリアック病",
+          "imageCount": 2
+        },
+        {
+          "id": 38,
+          "slug": "hirschsprung-ache-histology",
+          "title": "Hirschsprung病",
+          "imageCount": 1
+        },
+        {
+          "id": 154,
+          "slug": "biliary-atresia-ultrasound",
+          "title": "胆道閉鎖症",
+          "imageCount": 1
+        },
+        {
+          "id": 155,
+          "slug": "pediatric-inflammatory-bowel-disease-endoscopy",
+          "title": "小児炎症性腸疾患",
+          "imageCount": 1
+        }
+      ],
+      "currentCaseCount": 8,
+      "status": "in-progress"
+    },
+    {
+      "id": 15,
+      "name": "循環器",
+      "targetVisuals": [
+        "Fallot四徴症",
+        "完全大血管転位",
+        "総肺静脈還流異常",
+        "心房中隔欠損",
+        "心室中隔欠損",
+        "動脈管開存",
+        "大動脈縮窄",
+        "上室頻拍",
+        "WPW症候群"
+      ],
+      "targetCount": 9,
+      "coveredTargets": [
+        "Fallot四徴症",
+        "完全大血管転位",
+        "総肺静脈還流異常",
+        "心房中隔欠損",
+        "心室中隔欠損",
+        "上室頻拍",
+        "WPW症候群"
+      ],
+      "coveredTargetCount": 7,
+      "missingTargets": [
+        "動脈管開存",
+        "大動脈縮窄"
+      ],
+      "currentCases": [
+        {
+          "id": 8,
+          "slug": "tetralogy-fallot-boot-heart",
+          "title": "Fallot四徴症",
+          "imageCount": 1
+        },
+        {
+          "id": 9,
+          "slug": "tga-egg-on-string",
+          "title": "完全大血管転位",
+          "imageCount": 1
+        },
+        {
+          "id": 10,
+          "slug": "tapvr-snowman-sign",
+          "title": "総肺静脈還流異常症",
+          "imageCount": 1
+        },
+        {
+          "id": 11,
+          "slug": "atrial-septal-defect",
+          "title": "心房中隔欠損症",
+          "imageCount": 1
+        },
+        {
+          "id": 12,
+          "slug": "supraventricular-tachycardia",
+          "title": "上室頻拍",
+          "imageCount": 1
+        },
+        {
+          "id": 13,
+          "slug": "wpw-delta-wave",
+          "title": "WPW症候群",
+          "imageCount": 1
+        },
+        {
+          "id": 156,
+          "slug": "ventricular-septal-defect-echocardiography",
+          "title": "心室中隔欠損症",
+          "imageCount": 1
+        },
+        {
+          "id": 157,
+          "slug": "patent-ductus-arteriosus-echo",
+          "title": "動脈管開存症",
+          "imageCount": 1
+        },
+        {
+          "id": 158,
+          "slug": "coarctation-aorta-imaging",
+          "title": "大動脈縮窄症",
+          "imageCount": 1
+        }
+      ],
+      "currentCaseCount": 9,
+      "status": "in-progress"
+    },
+    {
+      "id": 16,
+      "name": "血液",
+      "targetVisuals": [
+        "ALL血液塗抹",
+        "AML血液塗抹",
+        "ITP末梢血",
+        "溶血性貧血塗抹",
+        "鉄欠乏性貧血塗抹",
+        "凝固異常パターン"
+      ],
+      "targetCount": 6,
+      "coveredTargets": [
+        "ALL血液塗抹",
+        "AML血液塗抹",
+        "溶血性貧血塗抹",
+        "鉄欠乏性貧血塗抹"
+      ],
+      "coveredTargetCount": 4,
+      "missingTargets": [
+        "ITP末梢血",
+        "凝固異常パターン"
+      ],
+      "currentCases": [
+        {
+          "id": 26,
+          "slug": "acute-lymphoblastic-leukemia-smear",
+          "title": "急性リンパ性白血病",
+          "imageCount": 2
+        },
+        {
+          "id": 27,
+          "slug": "acute-promyelocytic-leukemia-smear",
+          "title": "急性前骨髄球性白血病",
+          "imageCount": 1
+        },
+        {
+          "id": 28,
+          "slug": "sickle-cell-disease-smear",
+          "title": "鎌状赤血球症",
+          "imageCount": 1
+        },
+        {
+          "id": 29,
+          "slug": "hereditary-spherocytosis-smear",
+          "title": "遺伝性球状赤血球症",
+          "imageCount": 1
+        },
+        {
+          "id": 30,
+          "slug": "iron-deficiency-anemia-smear",
+          "title": "鉄欠乏性貧血",
+          "imageCount": 1
+        },
+        {
+          "id": 31,
+          "slug": "beta-thalassemia-smear",
+          "title": "βサラセミア",
+          "imageCount": 1
+        },
+        {
+          "id": 163,
+          "slug": "immune-thrombocytopenia-peripheral-smear",
+          "title": "免疫性血小板減少症（ITP）",
+          "imageCount": 1
+        },
+        {
+          "id": 164,
+          "slug": "hemophilia-coagulation-pattern",
+          "title": "血友病の凝固検査パターン",
+          "imageCount": 1
+        }
+      ],
+      "currentCaseCount": 8,
+      "status": "in-progress"
+    },
+    {
+      "id": 17,
+      "name": "腫瘍",
+      "targetVisuals": [
+        "Wilms腫瘍",
+        "神経芽腫",
+        "Burkittリンパ腫",
+        "Ewing肉腫",
+        "横紋筋肉腫",
+        "肝芽腫",
+        "網膜芽細胞腫",
+        "脳腫瘍MRI"
+      ],
+      "targetCount": 8,
+      "coveredTargets": [
+        "Wilms腫瘍",
+        "神経芽腫",
+        "Burkittリンパ腫",
+        "Ewing肉腫",
+        "横紋筋肉腫",
+        "肝芽腫",
+        "網膜芽細胞腫"
+      ],
+      "coveredTargetCount": 7,
+      "missingTargets": [
+        "脳腫瘍MRI"
+      ],
+      "currentCases": [
+        {
+          "id": 21,
+          "slug": "wilms-tumor-histology",
+          "title": "Wilms腫瘍",
+          "imageCount": 1
+        },
+        {
+          "id": 22,
+          "slug": "neuroblastoma-histology",
+          "title": "神経芽腫",
+          "imageCount": 2
+        },
+        {
+          "id": 23,
+          "slug": "burkitt-lymphoma-histology",
+          "title": "Burkittリンパ腫",
+          "imageCount": 2
+        },
+        {
+          "id": 24,
+          "slug": "ewing-sarcoma-histology",
+          "title": "Ewing肉腫",
+          "imageCount": 1
+        },
+        {
+          "id": 32,
+          "slug": "hodgkin-lymphoma-histology",
+          "title": "Hodgkinリンパ腫",
+          "imageCount": 1
+        },
+        {
+          "id": 33,
+          "slug": "medulloblastoma-histology",
+          "title": "髄芽腫",
+          "imageCount": 1
+        },
+        {
+          "id": 34,
+          "slug": "osteosarcoma-histology",
+          "title": "骨肉腫",
+          "imageCount": 1
+        },
+        {
+          "id": 35,
+          "slug": "rhabdomyosarcoma-histology",
+          "title": "横紋筋肉腫",
+          "imageCount": 1
+        },
+        {
+          "id": 36,
+          "slug": "hepatoblastoma-cytology",
+          "title": "肝芽腫",
+          "imageCount": 1
+        },
+        {
+          "id": 37,
+          "slug": "retinoblastoma-rosette",
+          "title": "網膜芽細胞腫",
+          "imageCount": 1
+        },
+        {
+          "id": 165,
+          "slug": "medulloblastoma-posterior-fossa-mri",
+          "title": "髄芽腫のMRI",
+          "imageCount": 1
+        }
+      ],
+      "currentCaseCount": 11,
+      "status": "in-progress"
+    },
+    {
+      "id": 18,
+      "name": "腎・泌尿器",
+      "targetVisuals": [
+        "水腎症超音波",
+        "膀胱尿管逆流",
+        "後部尿道弁",
+        "ネフローゼ病理",
+        "糸球体腎炎病理",
+        "多発性嚢胞腎"
+      ],
+      "targetCount": 6,
+      "coveredTargets": [
+        "水腎症超音波"
+      ],
+      "coveredTargetCount": 1,
+      "missingTargets": [
+        "膀胱尿管逆流",
+        "後部尿道弁",
+        "ネフローゼ病理",
+        "糸球体腎炎病理",
+        "多発性嚢胞腎"
+      ],
+      "currentCases": [
+        {
+          "id": 51,
+          "slug": "upj-obstruction-hydronephrosis-ultrasound",
+          "title": "腎盂尿管移行部閉塞による水腎症",
+          "imageCount": 1
+        },
+        {
+          "id": 181,
+          "slug": "pediatric-hydronephrosis-ultrasound-grading",
+          "title": "小児水腎症の超音波評価",
+          "imageCount": 1
+        },
+        {
+          "id": 182,
+          "slug": "vesicoureteral-reflux-vcug",
+          "title": "膀胱尿管逆流",
+          "imageCount": 1
+        },
+        {
+          "id": 183,
+          "slug": "posterior-urethral-valves-vcug",
+          "title": "後部尿道弁",
+          "imageCount": 1
+        },
+        {
+          "id": 184,
+          "slug": "minimal-change-nephrotic-syndrome-pathology",
+          "title": "微小変化型ネフローゼ症候群",
+          "imageCount": 1
+        },
+        {
+          "id": 185,
+          "slug": "poststreptococcal-glomerulonephritis-pathology",
+          "title": "溶連菌感染後急性糸球体腎炎",
+          "imageCount": 1
+        },
+        {
+          "id": 186,
+          "slug": "autosomal-recessive-polycystic-kidney-ultrasound",
+          "title": "常染色体潜性多発性嚢胞腎",
+          "imageCount": 1
+        }
+      ],
+      "currentCaseCount": 7,
+      "status": "in-progress"
+    },
+    {
+      "id": 19,
+      "name": "生殖器",
+      "targetVisuals": [
+        "停留精巣",
+        "精巣捻転",
+        "外性器異常",
+        "卵巣捻転",
+        "Müller管奇形"
+      ],
+      "targetCount": 5,
+      "coveredTargets": [
+        "精巣捻転"
+      ],
+      "coveredTargetCount": 1,
+      "missingTargets": [
+        "停留精巣",
+        "外性器異常",
+        "卵巣捻転",
+        "Müller管奇形"
+      ],
+      "currentCases": [
+        {
+          "id": 187,
+          "slug": "cryptorchidism-examination",
+          "title": "停留精巣",
+          "imageCount": 1
+        },
+        {
+          "id": 188,
+          "slug": "testicular-torsion-doppler-ultrasound",
+          "title": "精巣捻転",
+          "imageCount": 1
+        },
+        {
+          "id": 189,
+          "slug": "differences-sex-development-external-genitalia",
+          "title": "外性器の非典型所見（DSD）",
+          "imageCount": 1
+        },
+        {
+          "id": 190,
+          "slug": "ovarian-torsion-ultrasound",
+          "title": "卵巣捻転",
+          "imageCount": 1
+        },
+        {
+          "id": 191,
+          "slug": "mullerian-anomaly-mrkh-mri",
+          "title": "Müller管奇形（MRKH症候群）",
+          "imageCount": 1
+        }
+      ],
+      "currentCaseCount": 5,
+      "status": "in-progress"
+    },
+    {
+      "id": 20,
+      "name": "神経・筋",
+      "targetVisuals": [
+        "細菌性髄膜炎MRI",
+        "脳炎MRI",
+        "てんかん脳波",
+        "水頭症",
+        "Duchenne型筋ジストロフィー病理",
+        "脊髄性筋萎縮症",
+        "脳性麻痺MRI"
+      ],
+      "targetCount": 7,
+      "coveredTargets": [
+        "細菌性髄膜炎MRI",
+        "水頭症"
+      ],
+      "coveredTargetCount": 2,
+      "missingTargets": [
+        "脳炎MRI",
+        "てんかん脳波",
+        "Duchenne型筋ジストロフィー病理",
+        "脊髄性筋萎縮症",
+        "脳性麻痺MRI"
+      ],
+      "currentCases": [
+        {
+          "id": 44,
+          "slug": "tuberous-sclerosis-angiofibroma",
+          "title": "結節性硬化症",
+          "imageCount": 1
+        },
+        {
+          "id": 45,
+          "slug": "sturge-weber-port-wine-stain",
+          "title": "Sturge–Weber症候群",
+          "imageCount": 1
+        },
+        {
+          "id": 52,
+          "slug": "obstructive-hydrocephalus-child-ct",
+          "title": "閉塞性水頭症",
+          "imageCount": 1
+        },
+        {
+          "id": 192,
+          "slug": "bacterial-meningitis-contrast-mri",
+          "title": "細菌性髄膜炎",
+          "imageCount": 1
+        },
+        {
+          "id": 193,
+          "slug": "herpes-simplex-encephalitis-mri",
+          "title": "単純ヘルペス脳炎",
+          "imageCount": 1
+        },
+        {
+          "id": 194,
+          "slug": "absence-epilepsy-eeg",
+          "title": "小児欠神てんかん",
+          "imageCount": 1
+        },
+        {
+          "id": 195,
+          "slug": "duchenne-muscular-dystrophy-muscle-pathology",
+          "title": "Duchenne型筋ジストロフィー",
+          "imageCount": 1
+        },
+        {
+          "id": 196,
+          "slug": "spinal-muscular-atrophy-assessment",
+          "title": "脊髄性筋萎縮症",
+          "imageCount": 1
+        },
+        {
+          "id": 197,
+          "slug": "cerebral-palsy-brain-mri",
+          "title": "脳性麻痺のMRIパターン",
+          "imageCount": 1
+        },
+        {
+          "id": 198,
+          "slug": "pediatric-hydrocephalus-imaging",
+          "title": "小児水頭症の画像評価",
+          "imageCount": 1
+        }
+      ],
+      "currentCaseCount": 10,
+      "status": "in-progress"
+    },
+    {
+      "id": 21,
+      "name": "精神・行動・心身医学",
+      "targetVisuals": [
+        "自閉スペクトラム評価",
+        "ADHD評価",
+        "摂食障害身体所見",
+        "心身症の鑑別フロー"
+      ],
+      "targetCount": 4,
+      "coveredTargets": [],
+      "coveredTargetCount": 0,
+      "missingTargets": [
+        "自閉スペクトラム評価",
+        "ADHD評価",
+        "摂食障害身体所見",
+        "心身症の鑑別フロー"
+      ],
+      "currentCases": [
+        {
+          "id": 199,
+          "slug": "autism-developmental-assessment",
+          "title": "自閉スペクトラム症の発達評価",
+          "imageCount": 1
+        },
+        {
+          "id": 200,
+          "slug": "adhd-rating-scale-assessment",
+          "title": "注意欠如・多動症の評価",
+          "imageCount": 1
+        },
+        {
+          "id": 201,
+          "slug": "eating-disorder-physical-findings",
+          "title": "摂食障害の身体所見",
+          "imageCount": 1
+        },
+        {
+          "id": 202,
+          "slug": "psychosomatic-symptom-differential-flow",
+          "title": "心身症・機能性身体症状の鑑別",
+          "imageCount": 1
+        }
+      ],
+      "currentCaseCount": 4,
+      "status": "not-started"
+    },
+    {
+      "id": 22,
+      "name": "救急・集中治療",
+      "targetVisuals": [
+        "一次評価ABCDE",
+        "心肺蘇生リズム",
+        "ショック所見",
+        "頭部外傷CT",
+        "熱傷面積",
+        "中毒の特徴的心電図"
+      ],
+      "targetCount": 6,
+      "coveredTargets": [
+        "頭部外傷CT"
+      ],
+      "coveredTargetCount": 1,
+      "missingTargets": [
+        "一次評価ABCDE",
+        "心肺蘇生リズム",
+        "ショック所見",
+        "熱傷面積",
+        "中毒の特徴的心電図"
+      ],
+      "currentCases": [
+        {
+          "id": 203,
+          "slug": "pediatric-primary-assessment-abcde",
+          "title": "小児一次評価ABCDE",
+          "imageCount": 1
+        },
+        {
+          "id": 204,
+          "slug": "pediatric-cpr-rhythm-recognition",
+          "title": "小児心肺蘇生のリズム判読",
+          "imageCount": 1
+        },
+        {
+          "id": 205,
+          "slug": "pediatric-shock-perfusion-signs",
+          "title": "小児ショックの灌流所見",
+          "imageCount": 1
+        },
+        {
+          "id": 206,
+          "slug": "epidural-hematoma-head-ct",
+          "title": "急性硬膜外血腫",
+          "imageCount": 1
+        },
+        {
+          "id": 207,
+          "slug": "pediatric-burn-tbsa-assessment",
+          "title": "小児熱傷面積評価",
+          "imageCount": 1
+        },
+        {
+          "id": 208,
+          "slug": "tricyclic-antidepressant-poisoning-ecg",
+          "title": "三環系抗うつ薬中毒の心電図",
+          "imageCount": 1
+        }
+      ],
+      "currentCaseCount": 6,
+      "status": "in-progress"
+    },
+    {
+      "id": 23,
+      "name": "思春期医学",
+      "targetVisuals": [
+        "Tanner分類",
+        "原発性無月経の画像評価",
+        "摂食障害成長曲線",
+        "性感染症所見"
+      ],
+      "targetCount": 4,
+      "coveredTargets": [],
+      "coveredTargetCount": 0,
+      "missingTargets": [
+        "Tanner分類",
+        "原発性無月経の画像評価",
+        "摂食障害成長曲線",
+        "性感染症所見"
+      ],
+      "currentCases": [
+        {
+          "id": 209,
+          "slug": "tanner-staging-puberty",
+          "title": "Tanner分類",
+          "imageCount": 1
+        },
+        {
+          "id": 210,
+          "slug": "primary-amenorrhea-imaging-algorithm",
+          "title": "原発性無月経の画像評価",
+          "imageCount": 1
+        },
+        {
+          "id": 211,
+          "slug": "eating-disorder-growth-chart",
+          "title": "摂食障害の成長曲線",
+          "imageCount": 1
+        },
+        {
+          "id": 212,
+          "slug": "adolescent-sexually-transmitted-infection-findings",
+          "title": "思春期の性感染症所見",
+          "imageCount": 1
+        }
+      ],
+      "currentCaseCount": 4,
+      "status": "not-started"
+    },
+    {
+      "id": 24,
+      "name": "地域総合小児医療",
+      "targetVisuals": [
+        "在宅医療デバイス",
+        "医療的ケア児の評価",
+        "学校生活管理指導表",
+        "移行期医療ロードマップ"
+      ],
+      "targetCount": 4,
+      "coveredTargets": [],
+      "coveredTargetCount": 0,
+      "missingTargets": [
+        "在宅医療デバイス",
+        "医療的ケア児の評価",
+        "学校生活管理指導表",
+        "移行期医療ロードマップ"
+      ],
+      "currentCases": [
+        {
+          "id": 213,
+          "slug": "pediatric-home-ventilation-device",
+          "title": "在宅人工呼吸器の確認",
+          "imageCount": 1
+        },
+        {
+          "id": 214,
+          "slug": "children-medical-complexity-assessment",
+          "title": "医療的ケア児の包括評価",
+          "imageCount": 1
+        },
+        {
+          "id": 215,
+          "slug": "school-health-management-plan",
+          "title": "学校生活管理・緊急時対応計画",
+          "imageCount": 1
+        },
+        {
+          "id": 216,
+          "slug": "transition-to-adult-care-roadmap",
+          "title": "成人診療への移行期医療",
+          "imageCount": 1
+        }
+      ],
+      "currentCaseCount": 4,
+      "status": "not-started"
+    },
+    {
+      "id": 25,
+      "name": "関連領域",
+      "targetVisuals": [
+        "眼底所見",
+        "耳鏡所見",
+        "歯科口腔所見",
+        "皮膚腫瘍",
+        "整形外科X線",
+        "小児外科急性腹症"
+      ],
+      "targetCount": 6,
+      "coveredTargets": [
+        "眼底所見",
+        "耳鏡所見"
+      ],
+      "coveredTargetCount": 2,
+      "missingTargets": [
+        "歯科口腔所見",
+        "皮膚腫瘍",
+        "整形外科X線",
+        "小児外科急性腹症"
+      ],
+      "currentCases": [
+        {
+          "id": 55,
+          "slug": "acute-otitis-media-otoscopy",
+          "title": "急性中耳炎",
+          "imageCount": 1
+        },
+        {
+          "id": 217,
+          "slug": "papilledema-fundus-examination",
+          "title": "乳頭浮腫",
+          "imageCount": 1
+        },
+        {
+          "id": 218,
+          "slug": "early-childhood-caries-oral-findings",
+          "title": "幼児期う蝕",
+          "imageCount": 1
+        },
+        {
+          "id": 219,
+          "slug": "spitz-nevus-dermoscopy-child",
+          "title": "Spitz母斑",
+          "imageCount": 1
+        },
+        {
+          "id": 220,
+          "slug": "slipped-capital-femoral-epiphysis-xray",
+          "title": "大腿骨頭すべり症",
+          "imageCount": 1
+        },
+        {
+          "id": 221,
+          "slug": "acute-appendicitis-ultrasound-child",
+          "title": "急性虫垂炎",
+          "imageCount": 1
+        },
+        {
+          "id": 222,
+          "slug": "otitis-media-with-effusion-otoscopy",
+          "title": "滲出性中耳炎",
+          "imageCount": 1
+        }
+      ],
+      "currentCaseCount": 7,
+      "status": "in-progress"
+    }
+  ]
+}

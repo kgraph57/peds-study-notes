@@ -9,13 +9,35 @@
 - モバイル優先、ダークモード、キーボードフォーカス、reduced motion対応
 - 公開URL: https://peds-study-public.vercel.app
 
+## 小児科画像アトラス
+
+`/atlas/` に、日本小児科学会「小児科医の到達目標」改訂第8版の25分野を基準にした画像・視覚所見アトラスを収録しています。各分野の目標項目は `data/atlas/coverage-plan.json` で追跡し、目標数を下回るとビルドを失敗させます。
+
+- 再配布可能な画像だけを `assets/atlas/` に保存
+- 再利用条件を確定できない画像は原典リンクのみ
+- 画像ごとの完全な出典・ライセンス・改変有無を常時表示
+- ズーム、パン、ピンチズーム、全画面、注釈オーバーレイ、複数画像比較
+- 検索、25分野・カテゴリ・モダリティ・閲覧方式絞り込み、クイズ、お気に入り、学習済み
+- 監査データ: `data/atlas/image-license-audit.json`
+- 候補比較: `data/atlas/image-candidate-audit.json`
+
+### 画像を追加する
+
+1. 疾患ごとに具体的な図版候補を最大3件以上比較し、未完了なら候補監査へ `needs-research` と明記する（検索結果ページは候補数に含めない）
+2. 著作権者、個別ライセンス、商用利用、改変、再配布、埋め込み条件を原典で確認する
+3. 再配布可能な場合だけ `assets/atlas/` へ保存する。条件不明なら `external-link-only` にする
+4. `scripts/generate-atlas-data.mjs` の症例・出典を更新し、`npm run generate:atlas` を実行する
+5. `npm run build` と `node scripts/validate-atlas.mjs --online` を実行する
+
+画像内に患者氏名、ID、生年月日、検査日時、施設名、QRコード等がないことを目視確認してください。画像そのものは改変せず、指示はWebオーバーレイで追加します。
+
 ## 注意
 - 個人の学習用にまとめたオリジナル要約です。
 - 診療上の判断は必ず一次資料・診療ガイドラインを参照してください。内容の正確性・最新性は保証しません。
 
 ## デプロイ
 ```bash
-npm test
+npm run build
 vercel deploy --prod
 ```
 

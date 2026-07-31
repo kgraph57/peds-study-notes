@@ -2,6 +2,11 @@
   "name": "peds-study-notes",
   "private": true,
   "scripts": {
-    "test": "node --check app.js && node --check visuals.js && node --test tests/site.test.mjs"
+    "generate:atlas": "node scripts/generate-atlas-data.mjs",
+    "lint": "node scripts/validate-atlas.mjs",
+    "typecheck": "node --check app.js && node --check visuals.js && node --check atlas/atlas.js && node --check scripts/generate-atlas-data.mjs && node --check scripts/atlas-expansion-batch.mjs && node --check scripts/atlas-continuation-batch.mjs && node --check scripts/atlas-completion-01-09.mjs && node --check scripts/atlas-completion-10-17.mjs && node --check scripts/atlas-completion-18-25.mjs && node --check scripts/validate-atlas.mjs",
+    "test": "node --test tests/site.test.mjs tests/atlas.test.mjs",
+    "verify:generated": "node scripts/generate-atlas-data.mjs --check",
+    "build": "npm run verify:generated && npm run typecheck && npm run lint && npm test"
   }
 }
