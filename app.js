@@ -38,7 +38,20 @@
       if(h.closest('.textbook-figure')) return;             // まとめ図は学習項目数に含めない
       if(h.id==='references') return;
       var key = h.id || ('sec'+i);
-      items.push({ h2:h, stateKey:pfx+'item:'+key+':state', memoKey:pfx+'item:'+key+':memo' });
+      var tocItem=null;
+      if(h.id){
+        Array.prototype.some.call(document.querySelectorAll('nav#TOC a[href^="#"]'), function(link){
+          if(link.getAttribute('href')==='#'+h.id){ tocItem=link.closest('li'); return true; }
+          return false;
+        });
+      }
+      items.push({
+        h2:h,
+        container:h.closest('.visual-card'),
+        tocItem:tocItem,
+        stateKey:pfx+'item:'+key+':state',
+        memoKey:pfx+'item:'+key+':memo'
+      });
     });
 
     // ---- 進捗パネル（topnav直下）----
@@ -69,6 +82,8 @@
         var status = s || 'todo';
         it.h2.setAttribute('data-mastery', status);
         var filterHidden = status !== activeFilter;
+        if(it.container) it.container.hidden = filterHidden;
+        if(it.tocItem) it.tocItem.hidden = filterHidden;
         it.h2.hidden = filterHidden;
         (it.members||[]).forEach(function(member){ member.hidden = filterHidden; });
         if(it.memoWrap) it.memoWrap.hidden = filterHidden || !it.memoVisible;

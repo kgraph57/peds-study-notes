@@ -106,3 +106,101 @@ test('sheet filters hide classified items, restore categories, and persist after
     await new Promise((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
   }
 });
+
+test('classified visual cards and source sections leave no visible shell or table-of-contents entry', {
+  skip: chromePath ? false : 'Chrome/Chromium is not installed',
+}, async () => {
+  const server = await serveStudyNotes();
+  const address = server.address();
+  let browser;
+  try {
+    browser = await chromium.launch({ headless: true, executablePath: chromePath });
+    const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
+    const pageUrl = `http://127.0.0.1:${address.port}/${encodeURIComponent('遺伝_毎日確認シート.html')}`;
+    await page.goto(pageUrl, { waitUntil: 'domcontentloaded' });
+    await page.evaluate(() => localStorage.clear());
+    await page.reload({ waitUntil: 'domcontentloaded' });
+    await page.waitForSelector('[data-sheet-filter="todo"]');
+
+    const result = await page.evaluate(() => {
+      const visualHeading = document.querySelector('.visual-card h2[data-mastery="todo"]');
+      const visualCard = visualHeading.closest('.visual-card');
+      visualHeading.querySelector('.rev-seg__btn.is-known').click();
+
+      const sourceHeading = Array.from(document.querySelectorAll('h2[id][data-mastery="todo"]'))
+        .find((heading) => {
+          if (heading.closest('.visual-card')) return false;
+          let member = heading.nextElementSibling;
+          while (member && member.tagName !== 'H2') {
+            if (member.tagName === 'TABLE') return true;
+            member = member.nextElementSibling;
+          }
+          return false;
+        });
+      let sourceMember = sourceHeading.nextElementSibling;
+      while (sourceMember && sourceMember.tagName !== 'TABLE') sourceMember = sourceMember.nextElementSibling;
+      const tocItem = document.querySelector(`nav#TOC a[href="#${CSS.escape(sourceHeading.id)}"]`)?.closest('li');
+      sourceHeading.querySelector('.rev-seg__btn.is-known').click();
+
+      return {
+        visualCardHidden: visualCard.hidden,
+        visualCardDisplay: getComputedStyle(visualCard).display,
+        visualCardHeight: visualCard.getBoundingClientRect().height,
+        sourceMemberHidden: sourceMember.hidden,
+        sourceMemberDisplay: getComputedStyle(sourceMember).display,
+        tocItemHidden: tocItem?.hidden,
+        tocItemDisplay: tocItem ? getComputedStyle(tocItem).display : null,
+      };
+    });
+
+    assert.deepEqual(result, {
+      visualCardHidden: true,
+      visualCardDisplay: 'none',
+      visualCardHeight: 0,
+      sourceMemberHidden: true,
+      sourceMemberDisplay: 'none',
+      tocItemHidden: true,
+      tocItemDisplay: 'none',
+    });
+
+    await page.locator('[data-sheet-filter="known"]').click();
+    const restored = await page.evaluate(() => {
+      const visualHeading = document.querySelector('.visual-card h2[data-mastery="known"]');
+      const visualCard = visualHeading.closest('.visual-card');
+      const sourceHeading = Array.from(document.querySelectorAll('h2[id][data-mastery="known"]'))
+        .find((heading) => {
+          if (heading.closest('.visual-card')) return false;
+          let member = heading.nextElementSibling;
+          while (member && member.tagName !== 'H2') {
+            if (member.tagName === 'TABLE') return true;
+            member = member.nextElementSibling;
+          }
+          return false;
+        });
+      let sourceMember = sourceHeading.nextElementSibling;
+      while (sourceMember && sourceMember.tagName !== 'TABLE') sourceMember = sourceMember.nextElementSibling;
+      const tocItem = document.querySelector(`nav#TOC a[href="#${CSS.escape(sourceHeading.id)}"]`)?.closest('li');
+      return {
+        visualCardHidden: visualCard.hidden,
+        visualCardDisplay: getComputedStyle(visualCard).display,
+        sourceMemberHidden: sourceMember.hidden,
+        sourceMemberDisplay: getComputedStyle(sourceMember).display,
+        tocItemHidden: tocItem?.hidden,
+        tocItemDisplay: tocItem ? getComputedStyle(tocItem).display : null,
+        filterFocusRetained: document.activeElement === document.querySelector('[data-sheet-filter="known"]'),
+      };
+    });
+    assert.deepEqual(restored, {
+      visualCardHidden: false,
+      visualCardDisplay: 'block',
+      sourceMemberHidden: false,
+      sourceMemberDisplay: 'block',
+      tocItemHidden: false,
+      tocItemDisplay: 'list-item',
+      filterFocusRetained: true,
+    });
+  } finally {
+    if (browser) await browser.close();
+    await new Promise((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
+  }
+});

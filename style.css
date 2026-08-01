@@ -1,6 +1,7 @@
 :root{ --ink:#1b1b1d; --muted:#6b7378; --teal:#0B7DA3; --teal-d:#075f7e;
   --line:#e2e6e8; --soft:#f5f8f9; --hot:#b91c1c; --bg:#ffffff; }
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html{-webkit-text-size-adjust:100%}
 body{max-width:860px;margin:0 auto;padding:0 1.1rem 4rem;color:var(--ink);background:var(--bg);
   font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.8;font-size:17px}
