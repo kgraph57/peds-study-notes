@@ -27,7 +27,7 @@
   function buildSheet(){
     var sl = slug(location.pathname);
     var pfx = NS+':sheet:'+sl+':';
-    var showKnown = get(pfx+'show-known') === '1';
+    var activeFilter = 'todo';
     var h1 = document.querySelector('h1#神経筋-毎日確認シート, h1[id]:not(.title)') || document.querySelector('h1:not(.title)');
     var title = h1 ? h1.textContent.trim() : sl;
 
@@ -48,8 +48,12 @@
       '<div class="rev-progress__row">'
         +'<span class="rev-progress__label">習得状況</span>'
         +'<span class="rev-progress__nums" data-nums></span>'
-        +'<button class="rev-progress__focus" type="button" data-show-known aria-pressed="false"></button>'
         +'<button class="rev-progress__reset" type="button" data-reset>リセット</button>'
+      +'</div>'
+      +'<div class="rev-progress__filters filter-chips" role="group" aria-label="表示する習得状況">'
+        +'<button type="button" data-sheet-filter="todo" class="is-active" aria-pressed="true">未分類 <span data-filter-count="todo">0</span></button>'
+        +'<button type="button" data-sheet-filter="shaky" aria-pressed="false">あやしい <span data-filter-count="shaky">0</span></button>'
+        +'<button type="button" data-sheet-filter="known" aria-pressed="false">覚えた <span data-filter-count="known">0</span></button>'
       +'</div>'
       +'<div class="rev-progress__track"><span class="rev-progress__fill" data-fill></span></div>'
       +'<p class="rev-progress__focus-message" data-focus-message></p>';
@@ -62,34 +66,44 @@
       items.forEach(function(it){
         var s = get(it.stateKey) || '';
         if(s==='known') known++; else if(s==='shaky') shaky++; else todo++;
-        it.h2.setAttribute('data-mastery', s || 'todo');
-        // 覚えた節は本文＋見出しをグレーアウト（hoverで読める）
-        var dim = (s==='known');
-        it.h2.classList.toggle('rev-dim-h', dim);
-        (it.members||[]).forEach(function(el){ el.classList.toggle('rev-dim', dim); });
-        var focusHidden = dim && !showKnown;
-        it.h2.hidden = focusHidden;
-        (it.members||[]).forEach(function(member){ member.hidden = focusHidden; });
-        if(it.memoWrap) it.memoWrap.hidden = focusHidden || !it.memoVisible;
+        var status = s || 'todo';
+        it.h2.setAttribute('data-mastery', status);
+        var filterHidden = status !== activeFilter;
+        it.h2.hidden = filterHidden;
+        (it.members||[]).forEach(function(member){ member.hidden = filterHidden; });
+        if(it.memoWrap) it.memoWrap.hidden = filterHidden || !it.memoVisible;
       });
       var n = items.length || 1;
       bar.querySelector('[data-nums]').innerHTML =
         '<b class="is-known">覚えた '+known+'</b> ・ <b class="is-shaky">あやしい '+shaky+'</b>'
         +' ・ <b class="is-todo">未 '+todo+'</b> ／ 全'+items.length;
       bar.querySelector('[data-fill]').style.width = Math.round(known/n*100)+'%';
-      var showKnownButton=bar.querySelector('[data-show-known]');
-      showKnownButton.textContent=showKnown
-        ? '覚えた項目を隠す'
-        : '覚えた項目を表示（'+known+'）';
-      showKnownButton.setAttribute('aria-pressed',String(showKnown));
+      bar.querySelector('[data-filter-count="todo"]').textContent=String(todo);
+      bar.querySelector('[data-filter-count="shaky"]').textContent=String(shaky);
+      bar.querySelector('[data-filter-count="known"]').textContent=String(known);
       bar.classList.toggle('is-complete', known===items.length && items.length>0);
-      bar.querySelector('[data-focus-message]').textContent=known===items.length&&items.length>0
-        ? 'このシートは完了しました。覚えた項目は必要なときだけ戻せます。'
-        : 'いま集中する項目 '+(items.length-known)+'件';
+      var visibleCount=activeFilter==='known'?known:activeFilter==='shaky'?shaky:todo;
+      var filterLabel=activeFilter==='known'?'覚えた':activeFilter==='shaky'?'あやしい':'未分類';
+      bar.querySelector('[data-focus-message]').textContent=visibleCount>0
+        ? filterLabel+'の項目 '+visibleCount+'件'
+        : 'この分類には項目がありません。';
       set(pfx+'count', String(items.length));
       set(pfx+'known', String(known));
       set(pfx+'shaky', String(shaky));
       set(pfx+'title', title);
+    }
+
+    function focusNextReviewAction(current){
+      var currentIndex=items.indexOf(current);
+      var next=items.slice(currentIndex+1).find(function(it){ return !it.h2.hidden; });
+      if(!next){
+        for(var i=currentIndex-1;i>=0;i--){
+          if(!items[i].h2.hidden){ next=items[i]; break; }
+        }
+      }
+      var nextAction=next&&next.h2.querySelector('.rev-seg__btn.is-known');
+      if(nextAction) nextAction.focus();
+      else bar.querySelector('[data-sheet-filter="'+activeFilter+'"]').focus();
     }
 
     items.forEach(function(it){
@@ -114,6 +128,7 @@
           b.classList.add('is-active');
           b.setAttribute('aria-pressed','true');
           render();
+          if((st.v||'todo')!==activeFilter) focusNextReviewAction(it);
         });
         seg.appendChild(b);
       });
@@ -164,10 +179,16 @@
       items.forEach(function(it){ set(it.stateKey,''); set(it.memoKey,''); });
       location.reload();
     });
-    bar.querySelector('[data-show-known]').addEventListener('click', function(){
-      showKnown=!showKnown;
-      set(pfx+'show-known',showKnown?'1':'');
-      render();
+    bar.querySelectorAll('[data-sheet-filter]').forEach(function(button){
+      button.addEventListener('click', function(){
+        activeFilter=button.getAttribute('data-sheet-filter');
+        bar.querySelectorAll('[data-sheet-filter]').forEach(function(x){
+          var active=x===button;
+          x.classList.toggle('is-active',active);
+          x.setAttribute('aria-pressed',String(active));
+        });
+        render();
+      });
     });
 
     render();

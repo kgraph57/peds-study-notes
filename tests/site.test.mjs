@@ -74,14 +74,19 @@ test('既存の学習状態・メモ保存機能を維持する', () => {
   assert.match(app, /topic-infographic/);
 });
 
-test('学習ノートは覚えた項目を既定で隠し、必要な時だけ再表示できる', () => {
+test('学習ノートは未分類を既定表示し、分類した項目をその場で隠す', () => {
   const app = fs.readFileSync(path.join(root, 'app.js'), 'utf8');
-  assert.match(app, /show-known/);
-  assert.match(app, /覚えた項目を表示/);
-  assert.match(app, /it\.h2\.hidden\s*=/);
-  assert.match(app, /member\.hidden\s*=/);
-  assert.match(app, /statusRank/);
-  assert.match(app, /aria-pressed/);
+  const buildSheet = app.slice(app.indexOf('function buildSheet()'), app.indexOf('function buildIndex()'));
+  assert.match(buildSheet, /activeFilter\s*=\s*'todo'/);
+  assert.match(buildSheet, /data-sheet-filter="todo"[^>]*class="is-active"/);
+  assert.match(buildSheet, /data-sheet-filter="shaky"/);
+  assert.match(buildSheet, /data-sheet-filter="known"/);
+  assert.match(buildSheet, /filterHidden\s*=\s*status\s*!==\s*activeFilter/);
+  assert.match(buildSheet, /it\.h2\.hidden\s*=\s*filterHidden/);
+  assert.match(buildSheet, /member\.hidden\s*=\s*filterHidden/);
+  assert.match(buildSheet, /function focusNextReviewAction\(current\)/);
+  assert.match(buildSheet, /items\.indexOf\(current\)/);
+  assert.match(buildSheet, /focusNextReviewAction\(it\)/);
 });
 
 test('Vercel設定が有効なJSONである', () => {
