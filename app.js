@@ -54,6 +54,23 @@
       });
     });
 
+    var visualAtlas=document.querySelector('.visual-atlas');
+    var visualModeButton=document.querySelector('.visual-mode-toggle');
+    var toc=document.querySelector('nav#TOC');
+    var sourceTitle=document.querySelector('h1[id]:not(.title)');
+    var hasSourceItems=items.some(function(item){ return !item.container; });
+    var sourceIntro=[];
+    var sourceHeader=sourceTitle&&sourceTitle.closest('header');
+    if(sourceHeader){
+      sourceIntro.push(sourceHeader);
+    } else {
+      var introNode=sourceTitle;
+      while(introNode&&introNode.tagName!=='H2'){
+        sourceIntro.push(introNode);
+        introNode=introNode.nextElementSibling;
+      }
+    }
+
     // ---- 進捗パネル（topnav直下）----
     var bar = document.createElement('div');
     bar.className='rev-progress';
@@ -76,18 +93,33 @@
 
     function render(){
       var known=0, shaky=0, todo=0;
+      var visibleVisual=0, visibleSource=0;
+      var exitedVisualReview=false;
       items.forEach(function(it){
         var s = get(it.stateKey) || '';
         if(s==='known') known++; else if(s==='shaky') shaky++; else todo++;
         var status = s || 'todo';
         it.h2.setAttribute('data-mastery', status);
         var filterHidden = status !== activeFilter;
+        if(!filterHidden){
+          if(it.container) visibleVisual++; else visibleSource++;
+        }
         if(it.container) it.container.hidden = filterHidden;
         if(it.tocItem) it.tocItem.hidden = filterHidden;
         it.h2.hidden = filterHidden;
         (it.members||[]).forEach(function(member){ member.hidden = filterHidden; });
         if(it.memoWrap) it.memoWrap.hidden = filterHidden || !it.memoVisible;
       });
+      if(visualAtlas) visualAtlas.hidden=visibleVisual===0;
+      if(visualModeButton) visualModeButton.hidden=visibleVisual===0;
+      if(visibleVisual===0&&document.body.classList.contains('is-visual-review')){
+        document.body.classList.remove('is-visual-review');
+        if(visualModeButton) visualModeButton.textContent='図表だけ見る';
+        exitedVisualReview=true;
+      }
+      var showPageStructure=hasSourceItems?visibleSource>0:visibleVisual>0;
+      if(toc) toc.hidden=!showPageStructure;
+      sourceIntro.forEach(function(element){ element.hidden=!showPageStructure; });
       var n = items.length || 1;
       bar.querySelector('[data-nums]').innerHTML =
         '<b class="is-known">覚えた '+known+'</b> ・ <b class="is-shaky">あやしい '+shaky+'</b>'
@@ -106,6 +138,7 @@
       set(pfx+'known', String(known));
       set(pfx+'shaky', String(shaky));
       set(pfx+'title', title);
+      return exitedVisualReview;
     }
 
     function focusNextReviewAction(current){
@@ -142,8 +175,9 @@
           });
           b.classList.add('is-active');
           b.setAttribute('aria-pressed','true');
-          render();
-          if((st.v||'todo')!==activeFilter) focusNextReviewAction(it);
+          var exitedVisualReview=render();
+          if(exitedVisualReview) bar.querySelector('[data-sheet-filter="'+activeFilter+'"]').focus();
+          else if((st.v||'todo')!==activeFilter) focusNextReviewAction(it);
         });
         seg.appendChild(b);
       });
