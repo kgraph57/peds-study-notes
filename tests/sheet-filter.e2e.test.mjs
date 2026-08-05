@@ -272,59 +272,6 @@ test('empty mastery filter hides structural introductions and restores them with
   }
 });
 
-test('visual-only sheets keep their header and contents visible until the active filter is empty', {
-  skip: chromePath ? false : 'Chrome/Chromium is not installed',
-}, async () => {
-  const server = await serveStudyNotes();
-  const address = server.address();
-  let browser;
-  try {
-    browser = await chromium.launch({ headless: true, executablePath: chromePath });
-    const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
-    const pageUrl = `http://127.0.0.1:${address.port}/${encodeURIComponent('循環器_Visual_Study_Notes.html')}`;
-    await page.goto(pageUrl, { waitUntil: 'domcontentloaded' });
-    await page.evaluate(() => localStorage.clear());
-    await page.reload({ waitUntil: 'domcontentloaded' });
-    await page.waitForSelector('[data-sheet-filter="todo"]');
-
-    const initial = await page.evaluate(() => ({
-      headerVisible: !document.querySelector('header').hidden,
-      tocVisible: !document.querySelector('nav#TOC').hidden,
-      atlasVisible: !document.querySelector('.visual-atlas').hidden,
-      todoCount: document.querySelector('[data-filter-count="todo"]').textContent,
-    }));
-    assert.equal(initial.headerVisible, true);
-    assert.equal(initial.tocVisible, true);
-    assert.equal(initial.atlasVisible, true);
-    assert.ok(Number(initial.todoCount) > 0);
-
-    await page.evaluate(() => {
-      for (let index = 0; index < 100; index += 1) {
-        const next = document.querySelector('.visual-card h2[data-mastery="todo"]:not([hidden])');
-        if (!next) break;
-        next.querySelector('.rev-seg__btn.is-known').click();
-      }
-    });
-    const empty = await page.evaluate(() => ({
-      headerHidden: document.querySelector('header').hidden,
-      tocHidden: document.querySelector('nav#TOC').hidden,
-      atlasHidden: document.querySelector('.visual-atlas').hidden,
-    }));
-    assert.deepEqual(empty, { headerHidden: true, tocHidden: true, atlasHidden: true });
-
-    await page.locator('[data-sheet-filter="known"]').click();
-    const restored = await page.evaluate(() => ({
-      headerVisible: !document.querySelector('header').hidden,
-      tocVisible: !document.querySelector('nav#TOC').hidden,
-      atlasVisible: !document.querySelector('.visual-atlas').hidden,
-    }));
-    assert.deepEqual(restored, { headerVisible: true, tocVisible: true, atlasVisible: true });
-  } finally {
-    if (browser) await browser.close();
-    await new Promise((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
-  }
-});
-
 test('emptying visual items exits visual-only mode and focuses the active filter', {
   skip: chromePath ? false : 'Chrome/Chromium is not installed',
 }, async () => {

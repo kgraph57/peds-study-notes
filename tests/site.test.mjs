@@ -10,12 +10,14 @@ const context = { window: {} };
 vm.runInNewContext(source, context);
 const data = context.window.PEDS_VISUALS;
 
-test('30点以上の図表を、各領域3点以上で収録する', () => {
+test('20点以上の図表を、各暗記ノートに3点以上で収録する', () => {
   assert.ok(data);
   const entries = Object.values(data.pages);
-  assert.ok(entries.length >= 10);
+  assert.ok(entries.length >= 6);
   assert.ok(entries.every((page) => page.visuals.length >= 3));
-  assert.ok(entries.reduce((sum, page) => sum + page.visuals.length, 0) >= 30);
+  assert.ok(entries.reduce((sum, page) => sum + page.visuals.length, 0) >= 20);
+  // 図解は暗記ノート（毎日確認シート）にのみ紐づく
+  assert.ok(Object.keys(data.pages).every((key) => key.endsWith('_毎日確認シート')));
 });
 
 test('各図表に試験対策の必須要素と一次資料リンクがある', () => {
@@ -29,11 +31,11 @@ test('各図表に試験対策の必須要素と一次資料リンクがある',
   }
 });
 
-test('各暗記項目に紐づく日本語の一枚図解が9点以上ある', () => {
+test('各暗記項目に紐づく日本語の一枚図解が6点以上ある', () => {
   const illustrated = Object.values(data.pages)
     .flatMap((page) => page.visuals)
     .filter((visual) => visual.image);
-  assert.ok(illustrated.length >= 9);
+  assert.ok(illustrated.length >= 6);
   for (const visual of illustrated) {
     assert.ok(visual.image.src, `${visual.title}: image.src`);
     assert.ok(visual.image.alt, `${visual.title}: image.alt`);
@@ -53,15 +55,18 @@ test('遺伝は項目別に6枚以上の図解を収録する', () => {
   }
 });
 
-test('優先4領域の公開ページが存在する', () => {
+test('暗記ノートの公開ページが存在し、Visual Study Notes は撤去されている', () => {
   for (const file of [
-    '循環器_Visual_Study_Notes.html',
-    '新生児_Visual_Study_Notes.html',
-    '内分泌・代謝_Visual_Study_Notes.html',
-    '腎・泌尿器_Visual_Study_Notes.html',
+    '制度・倫理_毎日確認シート.html',
+    '感染症・予防接種_毎日確認シート.html',
+    '成長・発達・栄養_毎日確認シート.html',
+    '救急・中毒_毎日確認シート.html',
+    '神経・筋_毎日確認シート.html',
+    '遺伝_毎日確認シート.html',
   ]) {
     assert.ok(fs.existsSync(path.join(root, file)), file);
   }
+  assert.equal(fs.readdirSync(root).filter((f) => f.includes('_Visual_Study_Notes')).length, 0);
 });
 
 test('既存の学習状態・メモ保存機能を維持する', () => {
